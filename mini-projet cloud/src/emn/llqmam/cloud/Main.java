@@ -12,13 +12,13 @@ import emn.llqmam.cloud.services.OpenNebula;
  * @version 1.0 beta
  */
 public class Main {
-	
+
 	private static IApplication application;
-	
+
 	public static void main( String[] args ) {
-		
+
 		application = ApplicationFactory.getNewApplication();
-		
+
 		application.start();
 		OpenNebula on = new OpenNebula();
 		on.login("node1_1");
