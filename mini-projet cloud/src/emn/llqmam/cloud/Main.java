@@ -2,7 +2,6 @@ package emn.llqmam.cloud;
 
 import emn.llqmam.cloud.application.ApplicationFactory;
 import emn.llqmam.cloud.application.IApplication;
-import emn.llqmam.cloud.services.OpenNebula;
 
 
 
@@ -20,7 +19,5 @@ public class Main {
 		application = ApplicationFactory.getNewApplication();
 		
 		application.start();
-		OpenNebula on = new OpenNebula();
-		on.login("node1_1");
 	}
 }
