@@ -2,5 +2,5 @@ package emn.llqmam.cloud.services;
 
 public interface IOpenNebula {
 
-	public int login(String vm_name);
+	public int login(String vm_name, String ip_address);
 }

@@ -22,6 +22,6 @@ public class Main {
 		application.start();
 		
 		OpenNebula on = new OpenNebula();
-		on.login("node1_1");
+		on.login("node1_1","192.168.56.101:2633");
 	}
 }

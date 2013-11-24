@@ -10,7 +10,7 @@ public class OpenNebula implements IOpenNebula {
 	 * login into nodes
 	 * return int (1 = connected, 0=failed)
 	 */
-	public int login(String vm_name) {
+	public int login(String vm_name, String ip_address) {
 		// First of all, a Client object has to be created.
 		// Here the client will try to connect to OpenNebula using the default
 		// options: the auth. file will be assumed to be at $ONE_AUTH, and the
@@ -19,13 +19,13 @@ public class OpenNebula implements IOpenNebula {
 
 		try
 		{
-			oneClient = new Client();
+			oneClient = new Client("oneadmin:5bd7fcf39891cdff5896e10a79b7cd9e", "http://"+ip_address+"/RPC2");
 
 			// This VM template is a valid one, but it will probably fail to run
 			// if we try to deploy it; the path for the image is unlikely to
 			// exist.
 			String vmTemplate =
-					"NAME     = "+vm_name;
+					"NAME     = "+vm_name+"    CPU = 0.1    MEMORY = 64\n";
 
 			System.out.print("Trying to allocate the virtual machine... ");
 			OneResponse rc = VirtualMachine.allocate(oneClient, vmTemplate);
