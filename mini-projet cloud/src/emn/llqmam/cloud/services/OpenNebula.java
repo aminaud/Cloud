@@ -37,11 +37,29 @@ public class OpenNebula implements IOpenNebula {
 			int newVMID = Integer.parseInt(rc.getMessage());
 			System.out.println("ok, ID " + newVMID + ".");
 			vm.set_client(oneClient);
+
+			// We can create a representation for the new VM, using the returned
+			// VM-ID
+			VirtualMachine open_nebula_vm = new VirtualMachine(newVMID, oneClient);
+
+			// Let's hold the VM, so the scheduler won't try to deploy it
+			rc = open_nebula_vm.hold();
+			
+			vm.set_open_nebula_vm(open_nebula_vm);
+			if(rc.isError())
+			{
+				System.out.println("failed!");
+				throw new Exception( rc.getErrorMessage() );
+			}
+
 		}
 		catch (Exception e)
 		{
 			System.out.println(e.getMessage());
 		}
+
+
+
 		return vm;
 	}
 }
