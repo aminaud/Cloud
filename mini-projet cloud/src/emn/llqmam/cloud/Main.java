@@ -2,6 +2,7 @@ package emn.llqmam.cloud;
 
 import emn.llqmam.cloud.application.ApplicationFactory;
 import emn.llqmam.cloud.application.IApplication;
+import emn.llqmam.cloud.data.Vm;
 import emn.llqmam.cloud.services.OpenNebula;
 
 
@@ -22,6 +23,8 @@ public class Main {
 		application.start();
 		
 		OpenNebula on = new OpenNebula();
-		on.login("node1_1","192.168.56.101:2633");
+		Vm vm = new Vm();
+		vm = on.login("node1_1","192.168.56.101:2633");
+		System.out.println(vm.get_version()+ " "+ vm.get_name());
 	}
 }
