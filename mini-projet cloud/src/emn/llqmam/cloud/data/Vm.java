@@ -2,6 +2,7 @@ package emn.llqmam.cloud.data;
 
 import org.opennebula.client.Client;
 import org.opennebula.client.OneResponse;
+import org.opennebula.client.OneSystem;
 import org.opennebula.client.vm.VirtualMachine;
 
 public class Vm {
@@ -9,7 +10,7 @@ public class Vm {
 	Client client;
 	Integer ID;
 	String name;
-	VirtualMachine open_nebula_vm; //representation of the vm for opennebula
+	VirtualMachine open_nebula_vm; // representation of the vm for opennebula
 
 	public void set_client(Client client) {
 		this.client = client;
@@ -28,7 +29,8 @@ public class Vm {
 	}
 
 	public String get_version() {
-		return get_client().get_version().getMessage();
+		OneSystem os = new OneSystem(client);
+		return os.getOnedVersion().getMessage();
 	}
 
 	public void set_name(String name) {
@@ -51,44 +53,40 @@ public class Vm {
 
 		String result = "";
 		OneResponse response = this.get_open_nebula_vm().suspend();
-		if(response.isError())
-		{
-			result = "failed to suspend the vm: "+response.getErrorMessage();
-		}
-		else
-		{
+		if (response.isError()) {
+			result = "failed to suspend the vm: " + response.getErrorMessage();
+		} else {
 			result = response.getMessage();
 		}
 		return result;
 	}
-	
+
 	public String resume() {
 
 		String result = "";
 		OneResponse response = this.get_open_nebula_vm().resume();
-		if(response.isError())
-		{
-			result = "failed to resume the vm: "+response.getErrorMessage();
-		}
-		else
-		{
+		if (response.isError()) {
+			result = "failed to resume the vm: " + response.getErrorMessage();
+		} else {
 			result = response.getMessage();
 		}
 		return result;
 	}
-	
+
 	public String delete() {
-		
+
 		String result = "";
 		OneResponse response = this.get_open_nebula_vm().finalizeVM();
-		if(response.isError())
-	    {
-	        result = "failed to delete the vm: "+response.getErrorMessage();
-	    }
-		else
-		{
+		if (response.isError()) {
+			result = "failed to delete the vm: " + response.getErrorMessage();
+		} else {
 			result = response.getMessage();
 		}
 		return result;
+	}
+
+	public boolean checkCompatibility() {
+		OneSystem os = new OneSystem(client);
+		return os.compatibleVersion();
 	}
 }
