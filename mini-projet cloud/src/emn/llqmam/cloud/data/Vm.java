@@ -28,6 +28,11 @@ public class Vm {
 		this.ID = id;
 	}
 
+	/**
+	 * Gets OpenNebula node version.
+	 * 
+	 * @return The version of the OpenNebula node.
+	 */
 	public String get_version() {
 		OneSystem os = new OneSystem(client);
 		return os.getOnedVersion().getMessage();
@@ -85,6 +90,12 @@ public class Vm {
 		return result;
 	}
 
+	/**
+	 * Checks whether or not OCA client is compatible with OpenNebula node
+	 * version.
+	 * 
+	 * @return A boolean indicating the compatibility.
+	 */
 	public boolean checkCompatibility() {
 		OneSystem os = new OneSystem(client);
 		return os.compatibleVersion();
