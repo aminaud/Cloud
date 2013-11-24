@@ -4,4 +4,9 @@
 /mini-projet cloud/manifest.mf
 /mini-projet cloud/.metadata/
 /RemoteSystemsTempFiles/
-./metadata
+
+
+/.metadata/
+*.class
+*.project
+*.classpath
