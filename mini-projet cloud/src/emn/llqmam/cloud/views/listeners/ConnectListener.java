@@ -35,20 +35,20 @@ public class ConnectListener implements ActionListener {
 	 * 
 	 * @param connectDialog
 	 *            the dialog where we call this listener.
-	 * @param clientApp
+	 * @param application
 	 *            the instance of the main controller of this application.
 	 */
-	public ConnectListener(ConnectDialog connectDialog, IApplication clientApp) {
+	public ConnectListener(ConnectDialog connectDialog, IApplication application) {
 		this.connectDialog = connectDialog;
-		this.application = clientApp;
+		this.application = application;
 	}
 
 	// implemented method from ActionListener
 	public void actionPerformed(ActionEvent e) {
 		String password = connectDialog.getPassword();
-		String name = connectDialog.getUsername();
+		String name 	= connectDialog.getUsername();
 
-		// TODO
-		application.finish();
+		// TODO 1
+		application.connect(name, password);
 	}
 }

@@ -24,5 +24,10 @@ public class Application implements IApplication {
 	public void finish() {
 		System.exit(0);
 	}
+
+	@Override
+	public void connect(String name, String password) {
+		
+	}
 	
 }

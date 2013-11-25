@@ -25,4 +25,5 @@ public interface IView {
 	 */
 	public void updateView(Information information);
 	
+	public void startApplication();
 }

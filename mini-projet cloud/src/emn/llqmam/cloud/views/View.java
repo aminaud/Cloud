@@ -1,7 +1,9 @@
 package emn.llqmam.cloud.views;
 
+import emn.llqmam.cloud.application.ApplicationFactory;
 import emn.llqmam.cloud.application.IApplication;
 import emn.llqmam.cloud.data.Information;
+import emn.llqmam.cloud.views.components.ApplicationFrame;
 import emn.llqmam.cloud.views.components.ConnectDialog;
 
 /**
@@ -30,6 +32,13 @@ public class View implements IView {
 
 	public void updateView(Information information) {
 		// TODO
+	}
+
+
+	@Override
+	public void startApplication() {
+		ApplicationFrame frame = new ApplicationFrame(ApplicationFactory.getNewApplication());
+		frame.setVisible(true);
 	}
 	
 }
