@@ -12,13 +12,18 @@ import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
 import sun.awt.VerticalBagLayout;
 import emn.llqmam.cloud.application.IApplication;
+import emn.llqmam.cloud.data.Node;
+import emn.llqmam.cloud.data.Vm;
 import emn.llqmam.cloud.views.listeners.ConnectListener;
+import emn.llqmam.cloud.views.listeners.DisconnectListener;
 import emn.llqmam.cloud.views.listeners.SuspendListener;
 
 
@@ -38,26 +43,34 @@ public class ApplicationFrame extends JFrame {
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.initComponents();
+		this.setBackground(Colors.BACKGROUND);
 		this.application = application;
 	}
 
 
 	private void initComponents() {
 
-		JPanel panTop = new JPanel();
+		
 		
 		JLabel opennebula = new JLabel("You are connected on Opennebula version 1.2.3");
+		
 		JButton btnDisconnect = new JButton("Disconnect");
+		btnDisconnect.setBackground(Colors.NO_FOCUS);
+		btnDisconnect.addActionListener(new DisconnectListener(this, application));
 		
-		panTop.add(opennebula);
-		panTop.add(btnDisconnect);
-		
+		JPanel panTop = new JPanel(new BorderLayout());
+		panTop.setBorder(new EmptyBorder(10, 20, 10, 20));
+		panTop.add(opennebula, BorderLayout.CENTER);
+		panTop.add(btnDisconnect, BorderLayout.EAST);
 
 		// http://docs.oracle.com/javase/tutorial/uiswing/components/tree.html
 
 		JTabbedPane tabbedPane = new JTabbedPane();
-		tabbedPane.addTab("Nodes", new JPanel());
-		tabbedPane.addTab("VM", new JPanel());
+		JList<Node> listNodes = new JList<>();
+		JList<Vm> listVM = new JList<>();
+//		listVM.add
+		tabbedPane.addTab("Nodes", listNodes);
+		tabbedPane.addTab("VM", listVM);
 
 		JPanel panTab = new JPanel();
 		panTab.add(tabbedPane);
