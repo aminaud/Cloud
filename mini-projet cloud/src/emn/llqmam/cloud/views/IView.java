@@ -1,5 +1,11 @@
 package emn.llqmam.cloud.views;
 
+import java.util.List;
+
+import org.opennebula.client.host.Host;
+
+import emn.llqmam.cloud.data.Vm;
+
 /**
  * <p>This interface allows to communication with the view.<:p>
  * 
@@ -15,6 +21,8 @@ public interface IView {
 	/**
 	 * 
 	 */
-	public void displayApplication();
+	public void displayApplication(String versionOpenNebula, List<Vm> listVM, List<Host> listNode);
 	
+	
+	public void updatelistVM(List<Vm> listVM);
 }

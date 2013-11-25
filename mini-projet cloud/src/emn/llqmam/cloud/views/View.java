@@ -1,7 +1,11 @@
 package emn.llqmam.cloud.views;
 
-import emn.llqmam.cloud.application.ApplicationFactory;
+import java.util.List;
+
+import org.opennebula.client.host.Host;
+
 import emn.llqmam.cloud.application.IApplication;
+import emn.llqmam.cloud.data.Vm;
 import emn.llqmam.cloud.views.components.ApplicationFrame;
 import emn.llqmam.cloud.views.components.ConnectDialog;
 
@@ -33,12 +37,20 @@ public class View implements IView {
 
 
 	@Override
-	public void displayApplication() {
+	public void displayApplication(String versionOpenNebula, List<Vm> listVM, List<Host> listNode) {
+		// TODO listes
 		if (connectDialog != null)
 			connectDialog.showDialog(false);
 		
-		frame = new ApplicationFrame(ApplicationFactory.getNewApplication());
+		frame = new ApplicationFrame(application, versionOpenNebula);
 		frame.showFrame(true);
+	}
+
+
+	@Override
+	public void updatelistVM(List<Vm> listVM) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

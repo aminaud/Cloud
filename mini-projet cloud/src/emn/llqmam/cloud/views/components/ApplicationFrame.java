@@ -37,22 +37,22 @@ public class ApplicationFrame extends JFrame {
 	private IApplication application;
 
 
-	public ApplicationFrame (IApplication application) {
+	public ApplicationFrame (IApplication application, String versionOpenNebula) {
 		this.setTitle("Our Application");
 		this.setSize(700, 600);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.initComponents();
+		this.initComponents(versionOpenNebula);
 		this.setBackground(Colors.BACKGROUND);
 		this.application = application;
 	}
 
 
-	private void initComponents() {
+	private void initComponents(String versionON) {
 
 		
 		
-		JLabel opennebula = new JLabel("You are connected on Opennebula version 1.2.3");
+		JLabel opennebula = new JLabel("You are connected on Opennebula version " + versionON);
 		
 		JButton btnDisconnect = new JButton("Disconnect");
 		btnDisconnect.setBackground(Colors.NO_FOCUS);

@@ -13,7 +13,7 @@ public class TestView {
 //		ConnectDialog connectDialog = new ConnectDialog(null, "Application Name", ApplicationFactory.getNewApplication());
 //		connectDialog.showDialog();
 		
-		ApplicationFrame frame = new ApplicationFrame(ApplicationFactory.getNewApplication());
+		ApplicationFrame frame = new ApplicationFrame(ApplicationFactory.getNewApplication(), "1.2.3");
 		frame.setVisible(true);
 	}
 
