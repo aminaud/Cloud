@@ -14,6 +14,9 @@ import emn.llqmam.cloud.services.OpenNebula;
 public class Main {
 
 	private static IApplication application;
+	private static String IPLOIC = "";
+	private static String IPAURELIE = "169.254.222.102";
+	private static String IPQUENTIN = "169.254.166.243";
 
 	public static void main( String[] args ) {
 
@@ -22,6 +25,10 @@ public class Main {
 		application.start();
 		
 		OpenNebula on = new OpenNebula();
-		on.login("node1_1","192.168.56.101:2633");
+		on.login("node1_1", getIP()+":2633");
+	}
+	
+	public static String getIP() {
+		return IPAURELIE;
 	}
 }

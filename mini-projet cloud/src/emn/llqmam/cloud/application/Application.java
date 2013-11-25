@@ -19,5 +19,10 @@ public class Application implements IApplication {
 	public void start() {
 		view.start();
 	}
+
+	@Override
+	public void finish() {
+		System.exit(0);
+	}
 	
 }

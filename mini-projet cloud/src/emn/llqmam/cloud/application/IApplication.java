@@ -14,5 +14,10 @@ public interface IApplication {
 	 * <p>This method allows to start the application.</p>
 	 */
 	public void start();
+	
+	/**
+	 * 
+	 */
+	public void finish();
 
 }
