@@ -1,12 +1,14 @@
 package emn.llqmam.cloud.views.components;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -14,9 +16,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
+import javax.swing.ListCellRenderer;
 import javax.swing.border.EmptyBorder;
+
+import org.opennebula.client.host.Host;
 
 import sun.awt.VerticalBagLayout;
 import emn.llqmam.cloud.application.IApplication;
@@ -35,23 +41,33 @@ public class ApplicationFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	private IApplication application;
+	
+	private JList<Vm> jlistVM;
+	
+	public JList<Vm> getJlistVM() {
+		return jlistVM;
+	}
 
 
-	public ApplicationFrame (IApplication application, String versionOpenNebula) {
+	public JList<Host> getJlistHosts() {
+		return jlistHosts;
+	}
+
+	private JList<Host> jlistHosts;
+
+
+	public ApplicationFrame (IApplication application, String versionOpenNebula, List<Vm> listVM, List<Host> listNode) {
 		this.setTitle("Our Application");
-		this.setSize(700, 600);
+		this.setSize(700, 550);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.initComponents(versionOpenNebula);
+		this.initComponents(versionOpenNebula, listVM, listNode);
 		this.setBackground(Colors.BACKGROUND);
 		this.application = application;
 	}
 
 
-	private void initComponents(String versionON) {
-
-		
-		
+	private void initComponents(String versionON, List<Vm> listVM, List<Host> listHosts) {
 		JLabel opennebula = new JLabel("You are connected on Opennebula version " + versionON);
 		
 		JButton btnDisconnect = new JButton("Disconnect");
@@ -63,14 +79,39 @@ public class ApplicationFrame extends JFrame {
 		panTop.add(opennebula, BorderLayout.CENTER);
 		panTop.add(btnDisconnect, BorderLayout.EAST);
 
-		// http://docs.oracle.com/javase/tutorial/uiswing/components/tree.html
-
 		JTabbedPane tabbedPane = new JTabbedPane();
-		JList<Node> listNodes = new JList<>();
-		JList<Vm> listVM = new JList<>();
-//		listVM.add
-		tabbedPane.addTab("Nodes", listNodes);
-		tabbedPane.addTab("VM", listVM);
+		tabbedPane.setPreferredSize(new Dimension(500, 400)); // width, height
+		
+		// Affichage des hosts
+		int nbHosts;
+		if (listHosts != null) {
+			Host[] arrHost = new Host[0];
+			jlistHosts = new JList<>(listHosts.toArray(arrHost));
+			nbHosts = listHosts.size();
+		}
+		else {
+			jlistHosts = new JList<>();
+			nbHosts = 0;
+		}
+		jlistHosts.setCellRenderer(new HostCellRenderer());
+		JScrollPane scrollListHosts = new JScrollPane(jlistHosts);
+		tabbedPane.addTab("Hosts (" + nbHosts + ")", scrollListHosts);
+		
+		// affichage des VM
+		
+		int nbVM;
+		if (listVM != null) {
+			Vm[] arrVm = new Vm[0];
+			jlistVM = new JList<>(listVM.toArray(arrVm));
+			nbVM = listVM.size();
+		}
+		else {
+			jlistVM = new JList<>();
+			nbVM = 0;
+		}
+		jlistVM.setCellRenderer(new VMCellRenderer());
+		JScrollPane scrollListVM = new JScrollPane(jlistVM);
+		tabbedPane.addTab("VM (" + nbVM + ")", scrollListVM);
 
 		JPanel panTab = new JPanel();
 		panTab.add(tabbedPane);
@@ -106,8 +147,6 @@ public class ApplicationFrame extends JFrame {
 		this.getContentPane().add(panTop, BorderLayout.NORTH);
 		this.getContentPane().add(panTab, BorderLayout.CENTER);
 		this.getContentPane().add(panBut, BorderLayout.EAST);
-
-
 	}
 	
 	
@@ -134,4 +173,27 @@ public class ApplicationFrame extends JFrame {
 		this.setVisible(show);
 	}
 
+	private class VMCellRenderer extends JLabel implements ListCellRenderer<Vm> {
+	     public VMCellRenderer() {
+	         setOpaque(true);
+	     }
+	     public Component getListCellRendererComponent(JList<? extends Vm> list,
+	                                                   Vm value,  int index,
+	                                                   boolean isSelected,  boolean cellHasFocus) {
+	         setText(value.get_name());
+	         return this;
+	     }
+	 }
+	
+	private class HostCellRenderer extends JLabel implements ListCellRenderer<Host> {
+	     public HostCellRenderer() {
+	         setOpaque(true);
+	     }
+	     public Component getListCellRendererComponent(JList<? extends Host> list,
+	                                                   Host value,  int index,
+	                                                   boolean isSelected,  boolean cellHasFocus) {
+	         setText(value.getName());
+	         return this;
+	     }
+	 }
 }

@@ -45,7 +45,7 @@ public class View implements IView {
 		if (connectDialog != null)
 			connectDialog.showDialog(false);
 		
-		frame = new ApplicationFrame(application, versionOpenNebula);
+		frame = new ApplicationFrame(application, versionOpenNebula, listVM, listNode);
 		frame.showFrame(true);
 	}
 
