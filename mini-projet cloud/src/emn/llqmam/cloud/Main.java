@@ -14,7 +14,7 @@ import emn.llqmam.cloud.services.OpenNebula;
 public class Main {
 
 	private static IApplication application;
-	private static String IPLOIC = "";
+	private static String IPLOIC = "192.168.56.101";
 	private static String IPAURELIE = "169.254.222.102";
 	private static String IPQUENTIN = "169.254.166.243";
 
