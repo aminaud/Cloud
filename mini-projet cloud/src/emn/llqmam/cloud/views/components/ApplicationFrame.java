@@ -6,11 +6,11 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.List;
 
-import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,17 +18,13 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
-import javax.swing.JTextField;
 import javax.swing.ListCellRenderer;
 import javax.swing.border.EmptyBorder;
 
 import org.opennebula.client.host.Host;
 
-import sun.awt.VerticalBagLayout;
 import emn.llqmam.cloud.application.IApplication;
-import emn.llqmam.cloud.data.Node;
 import emn.llqmam.cloud.data.Vm;
-import emn.llqmam.cloud.views.listeners.ConnectListener;
 import emn.llqmam.cloud.views.listeners.DisconnectListener;
 import emn.llqmam.cloud.views.listeners.SuspendListener;
 
@@ -94,6 +90,18 @@ public class ApplicationFrame extends JFrame {
 			nbHosts = 0;
 		}
 		jlistHosts.setCellRenderer(new HostCellRenderer());
+		
+		MouseListener HostMouseListener = new MouseAdapter() {
+		     public void mouseClicked(MouseEvent e) {
+		         if (e.getClickCount() == 2) {
+		        	 // TODO
+		             int index = jlistHosts.locationToIndex(e.getPoint());
+		             System.out.println("Double clicked on Item " + index);
+		          }
+		     }
+		 };
+		 jlistHosts.addMouseListener(HostMouseListener);
+		
 		JScrollPane scrollListHosts = new JScrollPane(jlistHosts);
 		tabbedPane.addTab("Hosts (" + nbHosts + ")", scrollListHosts);
 		
@@ -110,6 +118,19 @@ public class ApplicationFrame extends JFrame {
 			nbVM = 0;
 		}
 		jlistVM.setCellRenderer(new VMCellRenderer());
+		
+		MouseListener VMMouseListener = new MouseAdapter() {
+		     public void mouseClicked(MouseEvent e) {
+		         if (e.getClickCount() == 2) {
+		             Vm vm = jlistVM.getSelectedValue();
+		             VMDialog dialog = new VMDialog(null, "VM Information", vm);
+		             dialog.showDialog(true);
+		          }
+		     }
+		 };
+		 jlistVM.addMouseListener(VMMouseListener);
+		
+		
 		JScrollPane scrollListVM = new JScrollPane(jlistVM);
 		tabbedPane.addTab("VM (" + nbVM + ")", scrollListVM);
 
@@ -181,6 +202,18 @@ public class ApplicationFrame extends JFrame {
 	                                                   Vm value,  int index,
 	                                                   boolean isSelected,  boolean cellHasFocus) {
 	         setText(value.get_name());
+	         
+	         if (isSelected) {
+	             setBackground(list.getSelectionBackground());
+	             setForeground(list.getSelectionForeground());
+	         } else {
+	             setBackground(list.getBackground());
+	             setForeground(list.getForeground());
+	         }
+	         setEnabled(list.isEnabled());
+	         setFont(list.getFont());
+	         setOpaque(true);
+	         
 	         return this;
 	     }
 	 }

@@ -18,10 +18,6 @@ public class Vm {
 	Integer ID;
 	String name;
 	VirtualMachine open_nebula_vm; // representation of the vm for opennebula
-	
-//	public String toString() {
-//		return name;
-//	}
 
 	public void set_client(Client client) {
 		this.client = client;
