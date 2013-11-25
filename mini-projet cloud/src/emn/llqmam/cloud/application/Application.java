@@ -13,7 +13,7 @@ public class Application implements IApplication {
 	private static IView view;
 	
 	public Application () {
-		view = ViewFactory.getView();
+		view = ViewFactory.getView(this, "Application name");
 	}
 	
 	public void start() {

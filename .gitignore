@@ -9,4 +9,5 @@
 /.metadata/
 *.class
 *.project
-*.classpath
+.classpath
+/myview/nbproject/private/

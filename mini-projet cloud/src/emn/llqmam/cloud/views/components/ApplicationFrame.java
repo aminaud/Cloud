@@ -5,12 +5,21 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.GroupLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
+
+import sun.awt.VerticalBagLayout;
+import emn.llqmam.cloud.application.IApplication;
+import emn.llqmam.cloud.views.listeners.ConnectListener;
+import emn.llqmam.cloud.views.listeners.SuspendListener;
 
 
 public class ApplicationFrame extends JFrame {
@@ -19,59 +28,75 @@ public class ApplicationFrame extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	
-	public ApplicationFrame () {
+
+	private IApplication application;
+
+
+	public ApplicationFrame (IApplication application) {
 		this.setTitle("Our Application");
 		this.setSize(700, 600);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.initComponents();
+		this.application = application;
 	}
 
 
 	private void initComponents() {
-		
+
 		JPanel panTop = new JPanel();
 		
-		// the form part for the username.
-		JLabel lbUsername = new JLabel("Userame");
-		JTextField tfUsername = new JTextField(20);
+		JLabel opennebula = new JLabel("You are connected on Opennebula version 1.2.3");
+		JButton btnDisconnect = new JButton("Disconnect");
+		
+		panTop.add(opennebula);
+		panTop.add(btnDisconnect);
+		
 
-		// the form part for the password.
-		JLabel lbPassword = new JLabel("Password");
-		JTextField tfPassword = new JTextField(20);
-		
 		// http://docs.oracle.com/javase/tutorial/uiswing/components/tree.html
-		
-		// panel for the form
-		JPanel panForm = new JPanel(new GridBagLayout());
-		panForm.setBackground(Colors.BACKGROUND);
-		panForm.setPreferredSize(new Dimension(320, 130));
-		panForm.add(lbUsername, getGridBagConstraints(0, 0, 1));
-		panForm.add(tfUsername, getGridBagConstraints(1, 0, 2));
-		panForm.add(lbPassword, getGridBagConstraints(0, 1, 1));
-		panForm.add(tfPassword, getGridBagConstraints(1, 1, 2));
-		
+
 		JTabbedPane tabbedPane = new JTabbedPane();
-		tabbedPane.addTab("Nodes", panForm);
+		tabbedPane.addTab("Nodes", new JPanel());
 		tabbedPane.addTab("VM", new JPanel());
-		
+
 		JPanel panTab = new JPanel();
 		panTab.add(tabbedPane);
-		
-		
 
-		
+		// buttons
+		JButton btnSuspend = new JButton("Suspend");
+		btnSuspend.setBackground(Colors.NO_FOCUS);
+		btnSuspend.addActionListener(new SuspendListener(this, application));
+
+		JButton btnResume = new JButton("Resume");
+		btnResume.setBackground(Colors.NO_FOCUS);
+		btnResume.addActionListener(new SuspendListener(this, application));
+
+		JButton btnMigrate = new JButton("Migrate");
+		btnMigrate.setBackground(Colors.NO_FOCUS);
+		btnMigrate.addActionListener(new SuspendListener(this, application));
+
+		JButton btnRemove = new JButton("Remove");
+		btnRemove.setBackground(Colors.NO_FOCUS);
+		btnRemove.addActionListener(new SuspendListener(this, application));
+		JPanel buttons = new JPanel(new GridBagLayout());
+
+		int padding = 5;
+		buttons.add(btnSuspend, getGridBagConstraints(0, 0, 1, padding));
+		buttons.add(btnResume, getGridBagConstraints(0, 1, 1, padding));
+		buttons.add(btnMigrate, getGridBagConstraints(0, 2, 1, padding));
+		buttons.add(btnRemove, getGridBagConstraints(0, 3, 1, padding));
 		
 		JPanel panBut = new JPanel();
-		
-		this.getContentPane().add(panTop, BorderLayout.PAGE_START);
+		panBut.add(buttons);
+
+		// adding of all panels of the frame
+		this.getContentPane().add(panTop, BorderLayout.NORTH);
 		this.getContentPane().add(panTab, BorderLayout.CENTER);
 		this.getContentPane().add(panBut, BorderLayout.EAST);
-		
-		
+
+
 	}
+	
 	
 	/**
 	 * <p>This method allows to define a placement on a grid for a component.</p>
@@ -80,13 +105,12 @@ public class ApplicationFrame extends JFrame {
 	 * @param width width for the cell, can be assimilated to a weight.
 	 * @return the placement.
 	 */
-	private GridBagConstraints getGridBagConstraints (int x, int y, int width) {
-		int padding = 5;
+	private GridBagConstraints getGridBagConstraints (int x, int y, int width, int padding) {
 		GridBagConstraints cs = new GridBagConstraints();
 		cs.fill = GridBagConstraints.HORIZONTAL;
 		cs.gridx = x;
 		cs.gridy = y;
-		cs.ipadx = padding;
+		cs.ipadx = 0;
 		cs.ipady = padding;
 		cs.gridwidth = width;
 		cs.insets = new Insets(padding, padding, padding, padding);
