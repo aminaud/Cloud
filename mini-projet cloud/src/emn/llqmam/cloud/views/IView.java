@@ -23,6 +23,7 @@ public interface IView {
 	 */
 	public void displayApplication(String versionOpenNebula, List<Vm> listVM, List<Host> listNode);
 	
-	
 	public void updatelistVM(List<Vm> listVM);
+	
+	public void displayMessage(String message, int type);
 }

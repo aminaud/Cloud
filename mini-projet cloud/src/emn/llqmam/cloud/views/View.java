@@ -1,6 +1,9 @@
 package emn.llqmam.cloud.views;
 
+import java.awt.Component;
 import java.util.List;
+
+import javax.swing.JOptionPane;
 
 import org.opennebula.client.host.Host;
 
@@ -51,6 +54,19 @@ public class View implements IView {
 	public void updatelistVM(List<Vm> listVM) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	/**
+	 * 
+	 * @param connect
+	 * @param message
+	 * @param type utiliser les constantes de JOptionPane
+	 */
+	public void displayMessage(String message, int type) {
+		Component component = connectDialog;
+		if (frame != null)
+			component = frame;
+		JOptionPane.showMessageDialog(component, message, name, type);
 	}
 	
 }

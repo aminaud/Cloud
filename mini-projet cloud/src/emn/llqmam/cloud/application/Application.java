@@ -3,6 +3,8 @@ package emn.llqmam.cloud.application;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import org.opennebula.client.host.Host;
 
 import emn.llqmam.cloud.data.Vm;
@@ -38,6 +40,7 @@ public class Application implements IApplication {
 		List<Host> listHost = new ArrayList<>();
 		// TODO recuperer les bonnes informations...
 		view.displayApplication(versionON, listVM, listHost);
+		view.displayMessage("You are connected on OpenNebula as " + name + ".\nThe OCA version is ok.", JOptionPane.INFORMATION_MESSAGE);
 	}
 	
 }
