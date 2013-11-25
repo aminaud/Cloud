@@ -45,6 +45,9 @@ public class ConnectListener implements ActionListener {
 
 	// implemented method from ActionListener
 	public void actionPerformed(ActionEvent e) {
+		
+		connectDialog.showDialog(false);
+		
 		String password = connectDialog.getPassword();
 		String name 	= connectDialog.getUsername();
 

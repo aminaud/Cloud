@@ -17,7 +17,7 @@ public class Application implements IApplication {
 	}
 	
 	public void start() {
-		view.start();
+		view.displayConnectionDialog();
 	}
 
 	@Override
@@ -27,7 +27,7 @@ public class Application implements IApplication {
 
 	@Override
 	public void connect(String name, String password) {
-		
+		view.displayApplication();
 	}
 	
 }

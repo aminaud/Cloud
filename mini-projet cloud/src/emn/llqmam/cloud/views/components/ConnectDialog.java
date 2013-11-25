@@ -93,7 +93,7 @@ public class ConnectDialog extends JDialog {
 		panIcon.add(new JLabel(new ImageIcon("resources/logo.png")));
 		
 		// the form part for the username.
-		lbUsername = new JLabel("Userame");
+		lbUsername = new JLabel("Username");
 		tfUsername = new JTextField(20);
 
 		// the form part for the password.
@@ -185,36 +185,22 @@ public class ConnectDialog extends JDialog {
 	}
 	
 	/**
-	 * <p>To know the user entry for the alias.</p>
-	 * @return the user entry for the alias.
+	 * <p>To know the user entry for the password.</p>
+	 * @return the user entry for the password.
 	 */
 	public String getPassword() {
 		return tfPassword.getText();
 	}
 	
 	/**
-	 * <p>To know the user entry for the number.</p>
-	 * @return the user entry for the number.
+	 * <p>To know the user entry for the username.</p>
+	 * @return the user entry for the username.
 	 */
 	public String getUsername() {
 		return tfUsername.getText();
 	}
 
-	/**
-	 * <p>To know if the user wants we keep his connection information.</p>
-	 * @return value of the checkbox "to keep your information".
-	 */
-	public boolean getKeeping() {
-		return cbKeeping.isSelected();
-	}
-
-	// implemented method from IDIalog
-	public void showDialog() {
-		this.setVisible(true);
-	}
-
-	// implemented method from IDialog
-	public void hideDialog() {
-		setVisible(false);
+	public void showDialog(boolean show) {
+		this.setVisible(show);
 	}
 }

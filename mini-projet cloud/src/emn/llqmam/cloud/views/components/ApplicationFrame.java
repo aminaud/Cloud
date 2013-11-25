@@ -129,5 +129,9 @@ public class ApplicationFrame extends JFrame {
 		cs.insets = new Insets(padding, padding, padding, padding);
 		return cs;
 	}
+	
+	public void showFrame(boolean show) {
+		this.setVisible(show);
+	}
 
 }

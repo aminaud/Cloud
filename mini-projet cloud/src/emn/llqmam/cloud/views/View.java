@@ -2,7 +2,6 @@ package emn.llqmam.cloud.views;
 
 import emn.llqmam.cloud.application.ApplicationFactory;
 import emn.llqmam.cloud.application.IApplication;
-import emn.llqmam.cloud.data.Information;
 import emn.llqmam.cloud.views.components.ApplicationFrame;
 import emn.llqmam.cloud.views.components.ConnectDialog;
 
@@ -15,30 +14,31 @@ public class View implements IView {
 	
 	private IApplication application;
 	private String name;
+	private ConnectDialog connectDialog;
+	private ApplicationFrame frame;
 	
 	public View (IApplication application, String name) {
 		this.application = application;
 		this.name = name;
 	}
-	
 
-	public void start() {
-		ConnectDialog dialog = new ConnectDialog(null, name, application);
-	}
 
-	public void updateView() {
-		// TODO
-	}
-
-	public void updateView(Information information) {
-		// TODO
+	public void displayConnectionDialog() {
+		if (frame != null)
+			frame.showFrame(false);
+		
+		connectDialog = new ConnectDialog(frame, name, application);
+		connectDialog.showDialog(true);
 	}
 
 
 	@Override
-	public void startApplication() {
-		ApplicationFrame frame = new ApplicationFrame(ApplicationFactory.getNewApplication());
-		frame.setVisible(true);
+	public void displayApplication() {
+		if (connectDialog != null)
+			connectDialog.showDialog(false);
+		
+		frame = new ApplicationFrame(ApplicationFactory.getNewApplication());
+		frame.showFrame(true);
 	}
 	
 }
