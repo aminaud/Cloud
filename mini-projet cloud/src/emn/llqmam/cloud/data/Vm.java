@@ -96,6 +96,24 @@ public class Vm {
 	}
 
 	/**
+	 * Migrates the VM to the target node.
+	 * 
+	 * @param nodeId
+	 *            The targeted node.
+	 * @return A message indicating whether or not the migration has succeeded.
+	 */
+	public String migrate(int nodeId) {
+		String result = "";
+		OneResponse response = this.open_nebula_vm.migrate(nodeId);
+		if (response.isError()) {
+			result = "failed to migrate the vm: " + response.getErrorMessage();
+		} else {
+			result = response.getMessage();
+		}
+		return result;
+	}
+
+	/**
 	 * Checks whether or not OCA client is compatible with OpenNebula node
 	 * version.
 	 * 
