@@ -38,16 +38,19 @@ public class Application implements IApplication {
 	}
 
 	@Override
-	public void connect(String name, String password) {
+	public void connect(String username, String password) {
+		if (username.isEmpty() && password.isEmpty()) {
+			username="oneadmin";
+			password="5bd7fcf39891cdff5896e10a79b7cd9e";
+		}
 		OpenNebula on = new OpenNebula();
 		Vm vm = new Vm();
-		vm = on.login("node1_1", "oneadmin",
-				"5bd7fcf39891cdff5896e10a79b7cd9e", Tools.get_IP() + ":2633");
+		vm = on.login(username,
+				password, Tools.get_IP() + ":2633");
 		String versionON = vm.get_version();
 		List<Vm> listVM = vm.retrieveVMsInfo();
 		List<Host> listHost = vm.retrieveNodesInfo();
-		this.name = name;
-		// TODO recuperer les bonnes informations...
+		this.name = username;
 		view.displayApplication(versionON, listVM, listHost);
 		view.displayMessage("You are connected on OpenNebula as " + name + ".\nThe OCA version is ok.", JOptionPane.INFORMATION_MESSAGE);
 	}
