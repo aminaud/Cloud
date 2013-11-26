@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 
 import emn.llqmam.cloud.application.IApplication;
 import emn.llqmam.cloud.views.components.ApplicationFrame;
-import emn.llqmam.cloud.views.components.ConnectDialog;
 
 /**
  * <p>

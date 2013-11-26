@@ -1,7 +1,6 @@
 package emn.llqmam.cloud;
 
 import org.opennebula.client.host.Host;
-import org.opennebula.client.vm.VirtualMachine;
 
 import emn.llqmam.cloud.data.Vm;
 import emn.llqmam.cloud.services.OpenNebula;

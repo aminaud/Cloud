@@ -1,9 +1,6 @@
 package emn.llqmam.cloud.views.components;
 
 
-import emn.llqmam.cloud.application.IApplication;
-import emn.llqmam.cloud.views.listeners.ConnectListener;
-
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Frame;
@@ -22,6 +19,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import emn.llqmam.cloud.application.IApplication;
+import emn.llqmam.cloud.views.listeners.ConnectListener;
 
 /**
  * <p>This class allows to build a dialog where an user can enter his connection information.</p>
