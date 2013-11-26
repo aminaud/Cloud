@@ -17,7 +17,7 @@ public class Vm {
 	Client client;
 	Integer ID;
 	String name;
-	VirtualMachine open_nebula_vm; // representation of the vm for opennebula
+	public VirtualMachine open_nebula_vm; // representation of the vm for opennebula
 
 	public void set_client(Client client) {
 		this.client = client;
@@ -150,8 +150,8 @@ public class Vm {
 	 * 
 	 * @return A list containing all the VMs.
 	 */
-	public List<VirtualMachine> retrieveVMsInfo() {
-		List<VirtualMachine> listVM = new ArrayList<>();
+	public List<Vm> retrieveVMsInfo() {
+		List<Vm> listVM = new ArrayList<>();
 		VirtualMachinePool vmp = new VirtualMachinePool(client);
 		// Loads the xml representation of all or part of the Virtual Machines
 		// in the pool.
@@ -160,14 +160,16 @@ public class Vm {
 		Iterator<VirtualMachine> i = vmp.iterator();
 		while (i.hasNext()) {
 			VirtualMachine vm = i.next();
-			listVM.add(vm);
+			Vm myVm = new Vm();
+			myVm.open_nebula_vm = vm;
+			listVM.add(myVm);
 		}
 		return listVM;
 	}
 	
-	public String getStatus() {
+	public String get_status() {
 		// TODO
-		return open_nebula_vm.stateStr();
+		return open_nebula_vm.status();
 	}
 
 }
