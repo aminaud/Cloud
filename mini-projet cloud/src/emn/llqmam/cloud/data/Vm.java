@@ -110,7 +110,7 @@ public class Vm {
 	 */
 	public List<Vm> retrieveVMsInfo() {
 		List<Vm> listVM = new ArrayList<>();
-		VirtualMachinePool vmp = new VirtualMachinePool(client);
+		VirtualMachinePool vmp = new VirtualMachinePool(client, VirtualMachinePool.ALL_VM);
 		// Loads the xml representation of all or part of the Virtual Machines
 		// in the pool.
 		/* OneResponse response = */vmp.info();
