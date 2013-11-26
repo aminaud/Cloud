@@ -76,7 +76,7 @@ public class Application implements IApplication {
 			view.updatelistVM(vmToRetrieve.retrieveVMsInfo());
 		}
 		catch (NumberFormatException e) {
-			view.displayMessage("Failed to modify, maybe you are not authorized to manage the VM "+ vm.get_name(), JOptionPane.ERROR_MESSAGE);
+			view.displayMessage(result, JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -89,7 +89,7 @@ public class Application implements IApplication {
 			view.updatelistVM(vmToRetrieve.retrieveVMsInfo());
 		}
 		catch (NumberFormatException e) {
-			view.displayMessage("Failed to modify, maybe you are not authorized to manage the VM "+ vm.get_name(), JOptionPane.ERROR_MESSAGE);
+			view.displayMessage(result, JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	
@@ -103,7 +103,7 @@ public class Application implements IApplication {
 			view.updatelistVM(vmToRetrieve.retrieveVMsInfo());
 		}
 		catch (NumberFormatException e) {
-			view.displayMessage("Failed to modify, maybe you are not authorized to manage the VM "+ vm.get_name(), JOptionPane.ERROR_MESSAGE);
+			view.displayMessage(result, JOptionPane.ERROR_MESSAGE);
 		}
 		catch (Exception e) {}
 	}
@@ -117,7 +117,7 @@ public class Application implements IApplication {
 			view.updatelistVM(vmToRetrieve.retrieveVMsInfo());
 		}
 		catch (NumberFormatException e) {
-			view.displayMessage("Failed to modify, maybe you are not authorized to manage the VM "+ vm.get_name(), JOptionPane.ERROR_MESSAGE);
+			view.displayMessage(result, JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }
