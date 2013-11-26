@@ -1,6 +1,5 @@
 package emn.llqmam.cloud.application;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -43,10 +42,8 @@ public class Application implements IApplication {
 		Vm vm = new Vm();
 		vm = on.login("node1_1", "oneadmin",
 				"5bd7fcf39891cdff5896e10a79b7cd9e", Tools.get_IP() + ":2633");
-		// Je ne comprends pas ce que vous faites là.
-		// on cherche la version d'OpenNebula, pourquoi est-ce une methode de VM ?
 		String versionON = vm.get_version();
-		List<Vm> listVM = vm.retrieveVMsInfo(); // erreur de conversion...
+		List<Vm> listVM = vm.retrieveVMsInfo();
 		List<Host> listHost = vm.retrieveNodesInfo();
 		this.name = name;
 		// TODO recuperer les bonnes informations...
