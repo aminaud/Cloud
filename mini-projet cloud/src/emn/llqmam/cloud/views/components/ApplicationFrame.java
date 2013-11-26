@@ -117,7 +117,7 @@ public class ApplicationFrame extends JFrame {
 			jlistVM = new JList<>();
 			nbVM = 0;
 		}
-//		jlistVM.setCellRenderer(new VMCellRenderer());
+		jlistVM.setCellRenderer(new VMCellRenderer());
 		
 		MouseListener VMMouseListener = new MouseAdapter() {
 		     public void mouseClicked(MouseEvent e) {
@@ -226,6 +226,18 @@ public class ApplicationFrame extends JFrame {
 	                                                   Host value,  int index,
 	                                                   boolean isSelected,  boolean cellHasFocus) {
 	         setText(value.getName());
+	         
+	         if (isSelected) {
+	             setBackground(list.getSelectionBackground());
+	             setForeground(list.getSelectionForeground());
+	         } else {
+	             setBackground(list.getBackground());
+	             setForeground(list.getForeground());
+	         }
+	         setEnabled(list.isEnabled());
+	         setFont(list.getFont());
+	         setOpaque(true);
+	         
 	         return this;
 	     }
 	 }
