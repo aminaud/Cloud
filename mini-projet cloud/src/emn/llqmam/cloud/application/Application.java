@@ -54,8 +54,12 @@ public class Application implements IApplication {
 		List<Vm> listVM = vm.retrieveVMsInfo();
 		List<Host> listHost = vm.retrieveNodesInfo();
 		this.name = username;
-		view.displayApplication(versionON, listVM, listHost);
-		view.displayMessage("You are connected on OpenNebula as " + name + ".\nThe OCA version is ok.", JOptionPane.INFORMATION_MESSAGE);
+		if (vm.checkCompatibility()) {
+			view.displayApplication(versionON, listVM, listHost);
+			view.displayMessage("You are connected on OpenNebula as " + name + ".\nOCA version is compatible with OpenNebula version.", JOptionPane.INFORMATION_MESSAGE);
+		} else {
+			view.displayMessage("Sorry we are not able to establish a connection. OCA version is not compatible with OpenNebula version.", JOptionPane.INFORMATION_MESSAGE);
+		}
 	}
 
 	public String getName() {
