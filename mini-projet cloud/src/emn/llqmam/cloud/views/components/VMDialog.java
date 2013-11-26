@@ -77,7 +77,7 @@ public class VMDialog extends JDialog {
 		JLabel tfName = new JLabel(vm.get_name());
 
 		JLabel lbStatus = new JLabel("Status");
-		JLabel tfStatus = new JLabel("");//vm.get_status());
+		JLabel tfStatus = new JLabel(vm.get_status());
 		
 		JLabel lbHost = new JLabel("Host");
 		JLabel tfHost = new JLabel(vm.get_host());
