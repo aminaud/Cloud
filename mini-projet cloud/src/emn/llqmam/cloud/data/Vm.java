@@ -17,22 +17,21 @@ public class Vm {
 	Client client;
 	Integer ID;
 	String name;
-	public VirtualMachine openNebulaVm; // representation of the vm for
-										// opennebula
+	public VirtualMachine open_nebula_vm; // representation of the vm for opennebula
 
-	public void setClient(Client client) {
+	public void set_client(Client client) {
 		this.client = client;
 	}
 
-	public Client getClient() {
+	public Client get_client() {
 		return this.client;
 	}
 
-	public int getID() {
+	public int get_ID() {
 		return this.ID;
 	}
 
-	public void setID(int id) {
+	public void set_ID(int id) {
 		this.ID = id;
 	}
 
@@ -41,31 +40,31 @@ public class Vm {
 	 * 
 	 * @return The version of the OpenNebula node.
 	 */
-	public String getVersion() {
-		// return this.client.getVersion().getMessage();
+	public String get_version() {
+		// return this.client.get_version().getMessage();
 		OneSystem os = new OneSystem(client);
 		return os.getOnedVersion().getMessage();
 	}
 
-	public void setName(String name) {
+	public void set_name(String name) {
 		this.name = name;
 	}
 
-	public String getName() {
+	public String get_name() {
 		return this.name;
 	}
 
-	public VirtualMachine getOpenNebulaVm() {
-		return this.openNebulaVm;
+	public VirtualMachine get_open_nebula_vm() {
+		return this.open_nebula_vm;
 	}
 
-	public void setOpenNebulaVm(VirtualMachine openNebulaVm) {
-		this.openNebulaVm = openNebulaVm;
+	public void set_open_nebula_vm(VirtualMachine open_nebula_vm) {
+		this.open_nebula_vm = open_nebula_vm;
 	}
 
 	public String suspend() {
 		String result = "";
-		OneResponse response = this.getOpenNebulaVm().suspend();
+		OneResponse response = this.get_open_nebula_vm().suspend();
 		if (response.isError()) {
 			result = "failed to suspend the vm: " + response.getErrorMessage();
 		} else {
@@ -76,7 +75,7 @@ public class Vm {
 
 	public String resume() {
 		String result = "";
-		OneResponse response = this.getOpenNebulaVm().resume();
+		OneResponse response = this.get_open_nebula_vm().resume();
 		if (response.isError()) {
 			result = "failed to resume the vm: " + response.getErrorMessage();
 		} else {
@@ -87,7 +86,7 @@ public class Vm {
 
 	public String delete() {
 		String result = "";
-		OneResponse response = this.getOpenNebulaVm().finalizeVM();
+		OneResponse response = this.get_open_nebula_vm().finalizeVM();
 		if (response.isError()) {
 			result = "failed to delete the vm: " + response.getErrorMessage();
 		} else {
@@ -105,7 +104,7 @@ public class Vm {
 	 */
 	public String migrate(int nodeId) {
 		String result = "";
-		OneResponse response = this.openNebulaVm.migrate(nodeId);
+		OneResponse response = this.open_nebula_vm.migrate(nodeId);
 		if (response.isError()) {
 			result = "failed to migrate the vm: " + response.getErrorMessage();
 		} else {
@@ -143,6 +142,7 @@ public class Vm {
 			listHost.add(h);
 		}
 		return listHost;
+
 	}
 
 	/**
@@ -161,14 +161,15 @@ public class Vm {
 		while (i.hasNext()) {
 			VirtualMachine vm = i.next();
 			Vm myVm = new Vm();
-			myVm.openNebulaVm = vm;
+			myVm.open_nebula_vm = vm;
 			listVM.add(myVm);
 		}
 		return listVM;
 	}
-
-	public String getStatus() {
-		return openNebulaVm.status();
+	
+	public String get_status() {
+		// TODO
+		return open_nebula_vm.status();
 	}
 
 }
