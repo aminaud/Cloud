@@ -1,10 +1,5 @@
 package emn.llqmam.cloud.views.components;
 
-
-import emn.llqmam.cloud.application.IApplication;
-import emn.llqmam.cloud.data.Vm;
-import emn.llqmam.cloud.views.listeners.ConnectListener;
-
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Frame;
@@ -15,17 +10,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import emn.llqmam.cloud.data.Vm;
+
 /**
- * <p>This class allows to build a dialog where an user can enter his connection information.</p>
+ * <p>
+ * This class allows to build a dialog where an user can enter his connection
+ * information.
+ * </p>
  * 
  * @author AM
  * @version 1.0 beta
@@ -33,16 +30,19 @@ import javax.swing.border.EmptyBorder;
 
 public class VMDialog extends JDialog {
 
-	
-	
 	private Vm vm;
-	
 
 	/**
-	 * <p>This constructor allows to build this dialog.</p>
-	 * @param parent the parent frame.
-	 * @param name the name for this dialog view.
-	 * @param application the main controller of this application.
+	 * <p>
+	 * This constructor allows to build this dialog.
+	 * </p>
+	 * 
+	 * @param parent
+	 *            the parent frame.
+	 * @param name
+	 *            the name for this dialog view.
+	 * @param application
+	 *            the main controller of this application.
 	 */
 	public VMDialog(Frame parent, String name, Vm vm) {
 		super(parent, name, false);
@@ -52,26 +52,25 @@ public class VMDialog extends JDialog {
 		this.vm = vm;
 		this.initComponent();
 	}
-	
+
 	/**
-	 * <p>This method allows to initialize the dialog view.</p>
+	 * <p>
+	 * This method allows to initialize the dialog view.
+	 * </p>
 	 */
 	private void initComponent() {
-		
-		/* Nom
-		 - Statut
-		 - Nom du noeud qui l'héberge
-		 - Hyperviseur installé
-		 - Consommation du processeur
-		 - Consommation de la mémoire*/
-		
-		
+
+		/*
+		 * Nom - Statut - Nom du noeud qui l'hï¿½berge - Hyperviseur installï¿½ -
+		 * Consommation du processeur - Consommation de la mï¿½moire
+		 */
+
 		JLabel lbName = new JLabel("Name");
 		JLabel tfName = new JLabel(vm.get_name());
-		
+
 		JLabel lbStatus = new JLabel("Status");
-		JLabel tfStatus = new JLabel(vm.getStatus());
-		
+		JLabel tfStatus = new JLabel(vm.get_status());
+
 		// panel for the form
 		JPanel panForm = new JPanel(new GridBagLayout());
 		panForm.setBackground(Colors.BACKGROUND);
@@ -82,26 +81,26 @@ public class VMDialog extends JDialog {
 		panForm.add(tfStatus, getGridBagConstraints(1, 1, 2));
 		panForm.add(lbStatus, getGridBagConstraints(0, 2, 1));
 		panForm.add(tfStatus, getGridBagConstraints(1, 2, 2));
-		
+
 		// top panel inside
 		JPanel panTopInside = new JPanel();
 		panTopInside.setBackground(Colors.BACKGROUND);
 		panTopInside.setLayout(new BorderLayout());
-		panTopInside.setBorder(BorderFactory.createTitledBorder("VM: " + vm.get_name()));
+		panTopInside.setBorder(BorderFactory.createTitledBorder("VM: "
+				+ vm.get_name()));
 		// we add icon & form
 		panTopInside.add(panForm, BorderLayout.CENTER);
-		
+
 		// top panel outside
 		JPanel panTopOutside = new JPanel();
 		panTopOutside.setBackground(Colors.BACKGROUND);
 		panTopOutside.setLayout(new BorderLayout());
-		panTopOutside.setBorder(new EmptyBorder(10, 20, 10, 20)); // top, left, bottom, right
+		panTopOutside.setBorder(new EmptyBorder(10, 20, 10, 20)); // top, left,
+																	// bottom,
+																	// right
 		// we add top panel inside
 		panTopOutside.add(panTopInside, BorderLayout.CENTER);
-		
-		
-		
-		
+
 		JButton btnOk = new JButton("Ok");
 		btnOk.setBackground(Colors.FOCUS);
 		btnOk.setForeground(Colors.FOCUS_TEXT);
@@ -110,7 +109,7 @@ public class VMDialog extends JDialog {
 				showDialog(false);
 			}
 		});
-		
+
 		// panel for buttons
 		JPanel panButtons = new JPanel();
 		panButtons.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -120,18 +119,25 @@ public class VMDialog extends JDialog {
 		getContentPane().add(panTopOutside, BorderLayout.CENTER);
 		getContentPane().add(panButtons, BorderLayout.PAGE_END);
 
-		// we ask to the dialog to take size and some other parameters since its content.
+		// we ask to the dialog to take size and some other parameters since its
+		// content.
 		pack();
 	}
-	
+
 	/**
-	 * <p>This method allows to define a placement on a grid for a component.</p>
-	 * @param x column for the component
-	 * @param y line for the component
-	 * @param width width for the cell, can be assimilated to a weight.
+	 * <p>
+	 * This method allows to define a placement on a grid for a component.
+	 * </p>
+	 * 
+	 * @param x
+	 *            column for the component
+	 * @param y
+	 *            line for the component
+	 * @param width
+	 *            width for the cell, can be assimilated to a weight.
 	 * @return the placement.
 	 */
-	private GridBagConstraints getGridBagConstraints (int x, int y, int width) {
+	private GridBagConstraints getGridBagConstraints(int x, int y, int width) {
 		int padding = 5;
 		GridBagConstraints cs = new GridBagConstraints();
 		cs.fill = GridBagConstraints.HORIZONTAL;
