@@ -11,6 +11,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -43,6 +44,8 @@ public class ApplicationFrame extends JFrame {
 	
 	private JList<Vm> jlistVM;
 	
+	private JTabbedPane tabbedPane;
+	
 	public JList<Vm> getJlistVM() {
 		return jlistVM;
 	}
@@ -56,13 +59,13 @@ public class ApplicationFrame extends JFrame {
 
 
 	public ApplicationFrame (IApplication application, String versionOpenNebula, List<Vm> listVM, List<Host> listNode) {
+		this.application = application;
 		this.setTitle("Our Application");
 		this.setSize(700, 550);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.initComponents(versionOpenNebula, listVM, listNode);
 		this.setBackground(Colors.BACKGROUND);
-		this.application = application;
 	}
 
 
@@ -78,7 +81,7 @@ public class ApplicationFrame extends JFrame {
 		panTop.add(opennebula, BorderLayout.CENTER);
 		panTop.add(btnDisconnect, BorderLayout.EAST);
 
-		JTabbedPane tabbedPane = new JTabbedPane();
+		tabbedPane = new JTabbedPane();
 		tabbedPane.setPreferredSize(new Dimension(500, 400)); // width, height
 		
 		// Affichage des hosts
@@ -255,15 +258,27 @@ public class ApplicationFrame extends JFrame {
 
 
 	public void updatelistVM(List<Vm> listVM) {
+		Vm[] arrVm = new Vm[0];
 		
-//		if (listVM != null) {
-//			Vm[] arrVm = new Vm[0];
-//			jlistVM = new JList<>(listVM.toArray(arrVm));
-//		}
-//		else {
-//			jlistVM = new JList<>();
-//		}
-//		
-//		jlistVM.updateUI();
+		if (listVM != null) {
+			jlistVM.setListData(listVM.toArray(arrVm));
+		}
+		else {
+			jlistVM.setListData(arrVm);
+		}
 	}
+
+
+	public void updatelistHosts(List<Host> listHosts) {
+		Host[] arrHosts = new Host[0];
+		
+		if (listHosts != null) {
+			jlistHosts.setListData(listHosts.toArray(arrHosts));
+		}
+		else {
+			jlistHosts.setListData(arrHosts);
+		}
+	}
+	
+	
 }
