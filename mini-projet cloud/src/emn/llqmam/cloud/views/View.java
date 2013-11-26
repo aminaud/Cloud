@@ -68,5 +68,12 @@ public class View implements IView {
 			component = frame;
 		JOptionPane.showMessageDialog(component, message, name, type);
 	}
+
+
+	@Override
+	public void updatelistHosts(List<Host> listHosts) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

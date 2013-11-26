@@ -25,5 +25,7 @@ public interface IView {
 	
 	public void updatelistVM(List<Vm> listVM);
 	
+	public void updatelistHosts(List<Host> listHosts);
+	
 	public void displayMessage(String message, int type);
 }
