@@ -15,6 +15,7 @@ public class Vm {
 	private VirtualMachine onVM		; // representation of the vm for opennebula
 
 	public Vm (VirtualMachine vm) {
+		this.onVM		= vm;
 		this.ID 		= onVM.getId() + "";
 		this.name 		= onVM.getName();
 		this.status 	= onVM.stateStr();
