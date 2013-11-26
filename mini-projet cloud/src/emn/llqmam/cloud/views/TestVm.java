@@ -1,16 +1,11 @@
 package emn.llqmam.cloud.views;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.opennebula.client.Client;
-import org.opennebula.client.OneResponse;
-import org.opennebula.client.OneSystem;
 import org.opennebula.client.host.Host;
-import org.opennebula.client.host.HostPool;
 import org.opennebula.client.vm.VirtualMachine;
-import org.opennebula.client.vm.VirtualMachinePool;
 
 import emn.llqmam.cloud.data.Vm;
 

@@ -34,6 +34,10 @@ import emn.llqmam.cloud.views.listeners.ConnectListener;
 public class ConnectDialog extends JDialog {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
 	 * <p>The label to ask the user number.</p>
 	 */
 	private JLabel lbUsername;

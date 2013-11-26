@@ -11,7 +11,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
 
-import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -26,7 +25,6 @@ import org.opennebula.client.host.Host;
 
 import emn.llqmam.cloud.application.IApplication;
 import emn.llqmam.cloud.data.Vm;
-import emn.llqmam.cloud.views.listeners.DisconnectListener;
 import emn.llqmam.cloud.views.listeners.MigrateListener;
 import emn.llqmam.cloud.views.listeners.RemoveListener;
 import emn.llqmam.cloud.views.listeners.ResumeListener;
@@ -196,7 +194,9 @@ public class ApplicationFrame extends JFrame {
 	}
 
 	private class VMCellRenderer extends JLabel implements ListCellRenderer<Vm> {
-	     public VMCellRenderer() {
+		private static final long serialVersionUID = 1L;
+		
+		public VMCellRenderer() {
 	         setOpaque(true);
 	     }
 	     public Component getListCellRendererComponent(JList<? extends Vm> list,
@@ -220,7 +220,9 @@ public class ApplicationFrame extends JFrame {
 	 }
 	
 	private class HostCellRenderer extends JLabel implements ListCellRenderer<Host> {
-	     public HostCellRenderer() {
+		private static final long serialVersionUID = 1L;
+		
+		public HostCellRenderer() {
 	         setOpaque(true);
 	     }
 	     public Component getListCellRendererComponent(JList<? extends Host> list,

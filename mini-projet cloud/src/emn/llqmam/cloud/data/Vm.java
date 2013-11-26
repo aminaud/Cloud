@@ -44,7 +44,7 @@ public class Vm {
 
 	public String delete() {
 		String result = "";
-		OneResponse response = this.get_open_nebula_vm().finalizeVM();
+		OneResponse response = this.get_open_nebula_vm().delete();
 		if (response.isError()) {
 			result = "failed to delete the vm: " + response.getErrorMessage();
 		} else {

@@ -69,32 +69,55 @@ public class Application implements IApplication {
 	
 	@Override
 	public void remove(Vm vm) {
-		vm.delete();
-		view.displayMessage("VM "+ vm.get_name() + " removed", JOptionPane.INFORMATION_MESSAGE);
-		view.updatelistVM(vmToRetrieve.retrieveVMsInfo());
+		String result = vm.delete();
+		try {
+			Integer.parseInt(result);
+			view.displayMessage("VM "+ vm.get_name() + " removed", JOptionPane.INFORMATION_MESSAGE);
+			view.updatelistVM(vmToRetrieve.retrieveVMsInfo());
+		}
+		catch (NumberFormatException e) {
+			view.displayMessage("Failed to modify, maybe you are not authorized to manage the VM "+ vm.get_name(), JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	@Override
 	public void resume(Vm vm) {
-		vm.resume();
-		view.displayMessage("VM "+ vm.get_name() + " resumed", JOptionPane.INFORMATION_MESSAGE);
-		view.updatelistVM(vmToRetrieve.retrieveVMsInfo());
+		String result = vm.resume();
+		try {
+			Integer.parseInt(result);
+			view.displayMessage("VM "+ vm.get_name() + " resumed", JOptionPane.INFORMATION_MESSAGE);
+			view.updatelistVM(vmToRetrieve.retrieveVMsInfo());
+		}
+		catch (NumberFormatException e) {
+			view.displayMessage("Failed to modify, maybe you are not authorized to manage the VM "+ vm.get_name(), JOptionPane.ERROR_MESSAGE);
+		}
 	}
 	
 	@Override
 	public void suspend(Vm vm) {
-		vm.suspend();
+		String result = vm.suspend();
 		try {
+			Integer.parseInt(result);
 			Thread.sleep(2000);
 			view.displayMessage("VM "+ vm.get_name() + " suspended", JOptionPane.INFORMATION_MESSAGE);
 			view.updatelistVM(vmToRetrieve.retrieveVMsInfo());
-		} catch (Exception e) {}
+		}
+		catch (NumberFormatException e) {
+			view.displayMessage("Failed to modify, maybe you are not authorized to manage the VM "+ vm.get_name(), JOptionPane.ERROR_MESSAGE);
+		}
+		catch (Exception e) {}
 	}
 
 	@Override
 	public void migrate(Vm vm, Host node) {
-		vm.migrate(node.gid());
-		view.displayMessage("VM "+ vm.get_name() + " migrated", JOptionPane.INFORMATION_MESSAGE);
-		view.updatelistVM(vmToRetrieve.retrieveVMsInfo());
+		String result = vm.migrate(node.gid());
+		try {
+			Integer.parseInt(result);
+			view.displayMessage("VM "+ vm.get_name() + " migrated", JOptionPane.INFORMATION_MESSAGE);
+			view.updatelistVM(vmToRetrieve.retrieveVMsInfo());
+		}
+		catch (NumberFormatException e) {
+			view.displayMessage("Failed to modify, maybe you are not authorized to manage the VM "+ vm.get_name(), JOptionPane.ERROR_MESSAGE);
+		}
 	}
 }

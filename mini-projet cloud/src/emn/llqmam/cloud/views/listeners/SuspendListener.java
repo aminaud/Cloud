@@ -5,8 +5,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
-import org.opennebula.client.host.Host;
-
 import emn.llqmam.cloud.application.IApplication;
 import emn.llqmam.cloud.data.Vm;
 import emn.llqmam.cloud.views.components.ApplicationFrame;

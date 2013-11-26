@@ -1,8 +1,6 @@
 package emn.llqmam.cloud.services;
 
 import org.opennebula.client.Client;
-import org.opennebula.client.OneResponse;
-import org.opennebula.client.vm.VirtualMachine;
 
 import emn.llqmam.cloud.data.Vm;
 

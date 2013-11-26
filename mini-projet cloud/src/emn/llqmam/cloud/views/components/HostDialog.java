@@ -18,8 +18,6 @@ import javax.swing.border.EmptyBorder;
 
 import org.opennebula.client.host.Host;
 
-import emn.llqmam.cloud.data.Vm;
-
 /**
  * <p>
  * This class allows to build a dialog where an user can enter his connection
