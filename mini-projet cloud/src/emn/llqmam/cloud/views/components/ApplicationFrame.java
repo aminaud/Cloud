@@ -26,6 +26,9 @@ import org.opennebula.client.host.Host;
 import emn.llqmam.cloud.application.IApplication;
 import emn.llqmam.cloud.data.Vm;
 import emn.llqmam.cloud.views.listeners.DisconnectListener;
+import emn.llqmam.cloud.views.listeners.MigrateListener;
+import emn.llqmam.cloud.views.listeners.RemoveListener;
+import emn.llqmam.cloud.views.listeners.ResumeListener;
 import emn.llqmam.cloud.views.listeners.SuspendListener;
 
 
@@ -144,15 +147,15 @@ public class ApplicationFrame extends JFrame {
 
 		JButton btnResume = new JButton("Resume");
 		btnResume.setBackground(Colors.NO_FOCUS);
-		btnResume.addActionListener(new SuspendListener(this, application));
+		btnResume.addActionListener(new ResumeListener(this, application));
 
 		JButton btnMigrate = new JButton("Migrate");
 		btnMigrate.setBackground(Colors.NO_FOCUS);
-		btnMigrate.addActionListener(new SuspendListener(this, application));
+		btnMigrate.addActionListener(new MigrateListener(this, application));
 
 		JButton btnRemove = new JButton("Remove");
 		btnRemove.setBackground(Colors.NO_FOCUS);
-		btnRemove.addActionListener(new SuspendListener(this, application));
+		btnRemove.addActionListener(new RemoveListener(this, application));
 		JPanel buttons = new JPanel(new GridBagLayout());
 
 		int padding = 5;
@@ -248,5 +251,19 @@ public class ApplicationFrame extends JFrame {
 	
 	public Host getSelectedHost () {
 		return jlistHosts.getSelectedValue();
+	}
+
+
+	public void updatelistVM(List<Vm> listVM) {
+		
+//		if (listVM != null) {
+//			Vm[] arrVm = new Vm[0];
+//			jlistVM = new JList<>(listVM.toArray(arrVm));
+//		}
+//		else {
+//			jlistVM = new JList<>();
+//		}
+//		
+//		jlistVM.updateUI();
 	}
 }
