@@ -66,19 +66,6 @@ public class HostDialog extends JDialog {
 	 */
 	private void initComponent() {
 
-		/*
-		 
-		 - Nom
-		- Etat
-		- Hyperviseur installé
-		- Capacité du processeur
-		- Capacité de la mémoire
-		- Quantité du processeur utilisée
-		- Quantité de la mémoire utilisée
-		- Quantité de la mémoire libre
-		 
-		 */
-
 		JLabel lbName = new JLabel("Name");
 		JLabel tfName = new JLabel(host.getName());
 		
@@ -109,7 +96,7 @@ public class HostDialog extends JDialog {
 		// panel for the form
 		JPanel panForm = new JPanel(new GridBagLayout());
 		panForm.setBackground(Colors.BACKGROUND);
-		panForm.setPreferredSize(new Dimension(320, 150));
+		panForm.setPreferredSize(new Dimension(320, 300));
 		panForm.add(lbName, getGridBagConstraints(0, 0, 1));
 		panForm.add(tfName, getGridBagConstraints(1, 0, 2));
 		panForm.add(lbState, getGridBagConstraints(0, 1, 1));
