@@ -167,7 +167,10 @@ public class Vm {
 	
 	public String getStatus() {
 		// TODO
-		return open_nebula_vm.stateStr();
+		if (open_nebula_vm != null)
+			return open_nebula_vm.stateStr();
+		else
+			return "";
 	}
 
 }

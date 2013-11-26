@@ -20,7 +20,7 @@ public class Application implements IApplication {
 	
 	private static IView view;
 	
-	private String name;
+	private String name = "";
 	
 	public Application () {
 		view = ViewFactory.getView(this, "Application name");
