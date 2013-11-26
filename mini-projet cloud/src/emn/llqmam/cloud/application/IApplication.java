@@ -21,5 +21,7 @@ public interface IApplication {
 	public void finish();
 	
 	public void connect(String name, String password);
+	
+	public String getName();
 
 }

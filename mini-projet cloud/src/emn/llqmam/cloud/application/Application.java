@@ -20,6 +20,8 @@ public class Application implements IApplication {
 	
 	private static IView view;
 	
+	private String name;
+	
 	public Application () {
 		view = ViewFactory.getView(this, "Application name");
 	}
@@ -38,9 +40,13 @@ public class Application implements IApplication {
 		String versionON = "1.2.3";
 		List<Vm> listVM = new ArrayList<>();
 		List<Host> listHost = new ArrayList<>();
+		this.name = name;
 		// TODO recuperer les bonnes informations...
 		view.displayApplication(versionON, listVM, listHost);
 		view.displayMessage("You are connected on OpenNebula as " + name + ".\nThe OCA version is ok.", JOptionPane.INFORMATION_MESSAGE);
 	}
 	
+	public String getName() {
+		return name;
+	}
 }

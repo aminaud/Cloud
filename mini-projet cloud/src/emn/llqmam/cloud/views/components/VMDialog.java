@@ -68,10 +68,9 @@ public class VMDialog extends JDialog {
 		
 		JLabel lbName = new JLabel("Name");
 		JLabel tfName = new JLabel(vm.get_name());
-
-		// the form part for the password.
-		JLabel lbID = new JLabel("ID");
-		JLabel tfID = new JLabel(vm.get_ID() + "");
+		
+		JLabel lbStatus = new JLabel("Status");
+		JLabel tfStatus = new JLabel(vm.getStatus());
 		
 		// panel for the form
 		JPanel panForm = new JPanel(new GridBagLayout());
@@ -79,8 +78,10 @@ public class VMDialog extends JDialog {
 		panForm.setPreferredSize(new Dimension(320, 130));
 		panForm.add(lbName, getGridBagConstraints(0, 0, 1));
 		panForm.add(tfName, getGridBagConstraints(1, 0, 2));
-		panForm.add(lbID, getGridBagConstraints(0, 1, 1));
-		panForm.add(tfID, getGridBagConstraints(1, 1, 2));
+		panForm.add(lbStatus, getGridBagConstraints(0, 1, 1));
+		panForm.add(tfStatus, getGridBagConstraints(1, 1, 2));
+		panForm.add(lbStatus, getGridBagConstraints(0, 2, 1));
+		panForm.add(tfStatus, getGridBagConstraints(1, 2, 2));
 		
 		// top panel inside
 		JPanel panTopInside = new JPanel();

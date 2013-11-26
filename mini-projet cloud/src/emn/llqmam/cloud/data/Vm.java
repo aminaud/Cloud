@@ -164,5 +164,10 @@ public class Vm {
 		}
 		return listVM;
 	}
+	
+	public String getStatus() {
+		// TODO
+		return open_nebula_vm.stateStr();
+	}
 
 }
