@@ -46,7 +46,6 @@ public class Application implements IApplication {
 			username="oneadmin";
 			password="5bd7fcf39891cdff5896e10a79b7cd9e";
 		}
-		OpenNebula on = new OpenNebula();
 		
 		on.login(username, password, Tools.get_IP() + ":2633");
 		String versionON = on.getOpenNebulaVersion();
