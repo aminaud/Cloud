@@ -21,7 +21,7 @@ public class Application implements IApplication {
 
 	private static IView view;
 
-	private String name;
+	private String username;
 	
 	private Vm vmToRetrieve;
 
@@ -47,23 +47,24 @@ public class Application implements IApplication {
 		OpenNebula on = new OpenNebula();
 		
 		Vm vm = new Vm();
-		vm = on.login(username,
-				password, Tools.get_IP() + ":2633");
+		vm = on.login(username, password, Tools.get_IP() + ":2633");
 		this.vmToRetrieve = vm;
 		String versionON = vm.get_version();
 		List<Vm> listVM = vm.retrieveVMsInfo();
 		List<Host> listHost = vm.retrieveNodesInfo();
-		this.name = username;
+		this.username = username;
 		if (vm.checkCompatibility()) {
 			view.displayApplication(versionON, listVM, listHost);
-			view.displayMessage("You are connected on OpenNebula as " + name + ".\nOCA version is compatible with OpenNebula version.", JOptionPane.INFORMATION_MESSAGE);
+			view.displayMessage("You are connected on OpenNebula as " + username
+					+ ".\nOCA version is compatible with OpenNebula version " + versionON,
+					JOptionPane.INFORMATION_MESSAGE);
 		} else {
 			view.displayMessage("Sorry we are not able to establish a connection. OCA version is not compatible with OpenNebula version.", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 
-	public String getName() {
-		return name;
+	public String getUsername() {
+		return username;
 	}
 	
 	@Override
@@ -83,8 +84,11 @@ public class Application implements IApplication {
 	@Override
 	public void suspend(Vm vm) {
 		vm.suspend();
-		view.displayMessage("VM "+ vm.get_name() + " suspended", JOptionPane.INFORMATION_MESSAGE);
-		view.updatelistVM(vmToRetrieve.retrieveVMsInfo());
+		try {
+			Thread.sleep(2000);
+			view.displayMessage("VM "+ vm.get_name() + " suspended", JOptionPane.INFORMATION_MESSAGE);
+			view.updatelistVM(vmToRetrieve.retrieveVMsInfo());
+		} catch (Exception e) {}
 	}
 
 	@Override

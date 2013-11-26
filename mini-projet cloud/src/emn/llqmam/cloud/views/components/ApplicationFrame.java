@@ -70,16 +70,11 @@ public class ApplicationFrame extends JFrame {
 
 
 	private void initComponents(String versionON, List<Vm> listVM, List<Host> listHosts) {
-		JLabel opennebula = new JLabel("You are connected on Opennebula version " + versionON);
-		
-		JButton btnDisconnect = new JButton("Disconnect");
-		btnDisconnect.setBackground(Colors.NO_FOCUS);
-		btnDisconnect.addActionListener(new DisconnectListener(this, application));
+		JLabel opennebula = new JLabel("You are connected on Opennebula version " + versionON + " as " + application.getUsername());
 		
 		JPanel panTop = new JPanel(new BorderLayout());
 		panTop.setBorder(new EmptyBorder(10, 20, 10, 20));
 		panTop.add(opennebula, BorderLayout.CENTER);
-		panTop.add(btnDisconnect, BorderLayout.EAST);
 
 		tabbedPane = new JTabbedPane();
 		tabbedPane.setPreferredSize(new Dimension(500, 400)); // width, height

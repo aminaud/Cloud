@@ -3,6 +3,8 @@ package emn.llqmam.cloud.views.listeners;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
+
 import org.opennebula.client.host.Host;
 
 import emn.llqmam.cloud.application.IApplication;
@@ -48,6 +50,10 @@ public class RemoveListener implements ActionListener {
 
 	// implemented method from ActionListener
 	public void actionPerformed(ActionEvent e) {
-		application.remove(applicationFrame.getSelectedVm());
+		Vm vm = applicationFrame.getSelectedVm();
+		if ( vm != null)
+			application.remove(vm);
+		else
+			JOptionPane.showMessageDialog(applicationFrame, "You have to select a virtual machine.", "Error Message", JOptionPane.ERROR_MESSAGE);
 	}
 }

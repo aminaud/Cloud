@@ -3,6 +3,8 @@ package emn.llqmam.cloud.views.listeners;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
+
 import org.opennebula.client.host.Host;
 
 import emn.llqmam.cloud.application.IApplication;
@@ -50,6 +52,9 @@ public class MigrateListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		Host host = applicationFrame.getSelectedHost();
 		Vm vm = applicationFrame.getSelectedVm();
-		application.migrate(vm, host);
+		if (vm != null && host != null)
+			application.migrate(vm, host);
+		else
+			JOptionPane.showMessageDialog(applicationFrame, "You have to select a host and a virtual machine.", "Error Message", JOptionPane.ERROR_MESSAGE);
 	}
 }

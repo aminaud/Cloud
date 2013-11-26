@@ -26,7 +26,7 @@ public interface IApplication {
 	
 	public void connect(String username, String password);
 	
-	public String getName();
+	public String getUsername();
 	
 	public void remove(Vm vm);
 	
