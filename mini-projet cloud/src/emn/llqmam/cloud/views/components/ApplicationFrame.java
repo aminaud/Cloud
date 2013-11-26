@@ -64,7 +64,7 @@ public class ApplicationFrame extends JFrame {
 
 
 	private void initComponents(String versionON, List<Vm> listVM, List<Host> listHosts) {
-		JLabel opennebula = new JLabel("You are connected on Opennebula version " + versionON);
+		JLabel opennebula = new JLabel("You are connected on Opennebula version " + versionON + " as " /*+ application.getName()*/);
 		
 		JButton btnDisconnect = new JButton("Disconnect");
 		btnDisconnect.setBackground(Colors.NO_FOCUS);

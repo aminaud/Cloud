@@ -1,7 +1,6 @@
 package emn.llqmam.cloud;
 
 import org.opennebula.client.host.Host;
-import org.opennebula.client.vm.VirtualMachine;
 
 import emn.llqmam.cloud.data.Vm;
 import emn.llqmam.cloud.services.OpenNebula;
@@ -15,22 +14,22 @@ public class TestService {
 		vm = on.login("node1_1", "oneadmin",
 				"5bd7fcf39891cdff5896e10a79b7cd9e", Tools.get_IP() + ":2633");
 		System.out.println("Version d'OpenNebula : " + vm.get_version());
-		System.out.print("Vérification de la compatibilité du client OCA avec la version d'OpenNebula... ");
+		System.out.print("Vï¿½rification de la compatibilitï¿½ du client OCA avec la version d'OpenNebula... ");
 		System.out.println(vm.checkCompatibility());
 		System.out
-				.println("Nombre de machines virtuelles hébergées sur l'infrastructure : "
+				.println("Nombre de machines virtuelles hï¿½bergï¿½es sur l'infrastructure : "
 						+ vm.retrieveVMsInfo().size());
-		for (VirtualMachine iVM : vm.retrieveVMsInfo()) {
-			System.out.println("ID : " + iVM.getId());
-			System.out.println("Nom : " + iVM.getName());
-			System.out.println("Statut : " + iVM.status());
+		for (Vm iVM : vm.retrieveVMsInfo()) {
+			System.out.println("ID : " + iVM.get_ID());
+			System.out.println("Nom : " + iVM.get_name());
+			System.out.println("Statut : " + iVM.get_status());
 			System.out
-					.println("Nom et id du noeud sur lequel la VM est hébergée : "
-							+ iVM.uid() + " " + iVM.xpath("UNAME"));
+					.println("Nom et id du noeud sur lequel la VM est hï¿½bergï¿½e : "
+							+ iVM.open_nebula_vm.uid() + " " + iVM.open_nebula_vm.xpath("UNAME"));
 			System.out.println("Consommation en ressources processeur : "
-					+ iVM.xpath("TEMPLATE/CPU"));
-			System.out.println("Consommation en ressources mémoire : "
-					+ iVM.xpath("TEMPLATE/MEMORY"));
+					+ iVM.open_nebula_vm.xpath("TEMPLATE/CPU"));
+			System.out.println("Consommation en ressources mï¿½moire : "
+					+ iVM.open_nebula_vm.xpath("TEMPLATE/MEMORY"));
 		}
 
 		System.out.println("Nombre de noeuds : "
@@ -39,19 +38,19 @@ public class TestService {
 			System.out.println("ID : " + iH.getId());
 			System.out.println("Nom : " + iH.getName());
 			System.out.println("Etat : " + iH.stateStr());
-			System.out.println("Hyperviseur installé : "
+			System.out.println("Hyperviseur installï¿½ : "
 					+ iH.xpath("TEMPLATE/HYPERVISOR"));
-			System.out.println("Capacité en ressources processeur : "
+			System.out.println("Capacitï¿½ en ressources processeur : "
 					+ iH.xpath("TEMPLATE/TOTALCPU"));
-			System.out.println("Capacité en ressources mémoire : "
+			System.out.println("Capacitï¿½ en ressources mï¿½moire : "
 					+ iH.xpath("TEMPLATE/TOTALMEMORY"));
-			System.out.println("Quantité de processeur utilisée : "
+			System.out.println("Quantitï¿½ de processeur utilisï¿½e : "
 					+ iH.xpath("TEMPLATE/USEDCPU"));
-			System.out.println("Quantité de mémoire utilisée : "
+			System.out.println("Quantitï¿½ de mï¿½moire utilisï¿½e : "
 					+ iH.xpath("TEMPLATE/USEDMEMORY"));
-			System.out.println("Quantité de processeur libre : "
+			System.out.println("Quantitï¿½ de processeur libre : "
 					+ iH.xpath("TEMPLATE/FREECPU"));
-			System.out.println("Quantité de mémoire libre : "
+			System.out.println("Quantitï¿½ de mï¿½moire libre : "
 					+ iH.xpath("TEMPLATE/FREEMEMORY"));
 		}
 	}
