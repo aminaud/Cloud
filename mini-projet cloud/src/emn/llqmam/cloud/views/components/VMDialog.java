@@ -86,8 +86,7 @@ public class VMDialog extends JDialog {
 		JPanel panTopInside = new JPanel();
 		panTopInside.setBackground(Colors.BACKGROUND);
 		panTopInside.setLayout(new BorderLayout());
-		panTopInside.setBorder(BorderFactory.createTitledBorder("VM: "
-				+ vm.get_name()));
+		panTopInside.setBorder(BorderFactory.createTitledBorder("VM: " + vm.get_name()));
 		// we add icon & form
 		panTopInside.add(panForm, BorderLayout.CENTER);
 
