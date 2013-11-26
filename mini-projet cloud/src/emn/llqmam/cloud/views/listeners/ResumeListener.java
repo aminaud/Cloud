@@ -48,9 +48,6 @@ public class ResumeListener implements ActionListener {
 
 	// implemented method from ActionListener
 	public void actionPerformed(ActionEvent e) {
-		Host host = applicationFrame.getSelectedHost();
-		Vm vm = applicationFrame.getSelectedVm();
-
-		// TODO
+		application.resume(applicationFrame.getSelectedVm());
 	}
 }

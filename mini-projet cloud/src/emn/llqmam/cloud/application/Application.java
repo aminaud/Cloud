@@ -22,6 +22,8 @@ public class Application implements IApplication {
 	private static IView view;
 
 	private String name;
+	
+	private Vm vmToRetrieve;
 
 	public Application () {
 		view = ViewFactory.getView(this, "Application name");
@@ -43,9 +45,11 @@ public class Application implements IApplication {
 			password="5bd7fcf39891cdff5896e10a79b7cd9e";
 		}
 		OpenNebula on = new OpenNebula();
+		
 		Vm vm = new Vm();
 		vm = on.login(username,
 				password, Tools.get_IP() + ":2633");
+		this.vmToRetrieve = vm;
 		String versionON = vm.get_version();
 		List<Vm> listVM = vm.retrieveVMsInfo();
 		List<Host> listHost = vm.retrieveNodesInfo();
@@ -56,5 +60,26 @@ public class Application implements IApplication {
 
 	public String getName() {
 		return name;
+	}
+	
+	@Override
+	public void remove(Vm vm) {
+		vm.delete();
+		view.displayMessage("VM "+ vm.get_name() + " removed", JOptionPane.INFORMATION_MESSAGE);
+		view.updatelistVM(vmToRetrieve.retrieveVMsInfo());
+	}
+
+	@Override
+	public void resume(Vm vm) {
+		vm.resume();
+		view.displayMessage("VM "+ vm.get_name() + " resumed", JOptionPane.INFORMATION_MESSAGE);
+		view.updatelistVM(vmToRetrieve.retrieveVMsInfo());
+	}
+	
+	@Override
+	public void suspend(Vm vm) {
+		vm.suspend();
+		view.displayMessage("VM "+ vm.get_name() + " suspended", JOptionPane.INFORMATION_MESSAGE);
+		view.updatelistVM(vmToRetrieve.retrieveVMsInfo());
 	}
 }

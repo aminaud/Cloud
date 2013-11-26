@@ -1,5 +1,7 @@
 package emn.llqmam.cloud.application;
 
+import emn.llqmam.cloud.data.Vm;
+
 /**
  * <p>This interface allows to control the application. All classes which implements this interface are the core
  * of the application: when two modules want to communicate they have to pass by the main controller. Two modules
@@ -23,5 +25,11 @@ public interface IApplication {
 	public void connect(String username, String password);
 	
 	public String getName();
+	
+	public void remove(Vm vm);
+	
+	public void resume(Vm vm);
+	
+	public void suspend(Vm vm);
 
 }
