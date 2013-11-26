@@ -6,7 +6,7 @@
 /RemoteSystemsTempFiles/
 /mini-projet cloud/properties/open_nebula_ip
 
-/.metadata/
+/.metadata/*
 *.class
 *.project
 *.classpath

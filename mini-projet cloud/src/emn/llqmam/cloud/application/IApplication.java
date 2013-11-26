@@ -20,7 +20,7 @@ public interface IApplication {
 	 */
 	public void finish();
 	
-	public void connect(String name, String password);
+	public void connect(String username, String password);
 	
 	public String getName();
 
