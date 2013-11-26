@@ -17,6 +17,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
@@ -47,7 +48,7 @@ public class ConnectDialog extends JDialog {
 	/**
 	 * <p>The field to put the user alias.</p>
 	 */
-	private JTextField tfPassword;
+	private JPasswordField tfPassword;
 	/**
 	 * <p>The field to know if the user wants we keep his information.</p>
 	 */
@@ -98,7 +99,7 @@ public class ConnectDialog extends JDialog {
 
 		// the form part for the password.
 		lbPassword = new JLabel("Password");
-		tfPassword = new JTextField(20);
+		tfPassword = new JPasswordField(20);
 		
 		// panel for the form
 		JPanel panForm = new JPanel(new GridBagLayout());
