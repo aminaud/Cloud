@@ -11,7 +11,7 @@ public class TestService {
 	public static void Main(String[] args) {
 		OpenNebula on = new OpenNebula();
 		Vm vm = new Vm();
-		vm = on.login("node1_1", "oneadmin",
+		vm = on.login("oneadmin",
 				"5bd7fcf39891cdff5896e10a79b7cd9e", Tools.get_IP() + ":2633");
 		System.out.println("Version d'OpenNebula : " + vm.get_version());
 		System.out
