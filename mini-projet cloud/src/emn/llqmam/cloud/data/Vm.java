@@ -169,7 +169,7 @@ public class Vm {
 	}
 
 	public String get_status() {
-		return open_nebula_vm.status();
+		return open_nebula_vm.stateStr() + " / "+ open_nebula_vm.lcmStateStr();
 	}
 
 	public String get_host() {
