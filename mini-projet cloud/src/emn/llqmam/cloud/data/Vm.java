@@ -157,7 +157,7 @@ public class Vm {
 	}
 
 	public String get_name() {
-		return open_nebula_vm.getName();
+		return open_nebula_vm.getName()+ " (" +open_nebula_vm.getId() + ")";
 	}
 
 	public VirtualMachine get_open_nebula_vm() {
