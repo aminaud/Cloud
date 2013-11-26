@@ -1,5 +1,7 @@
 package emn.llqmam.cloud.application;
 
+import org.opennebula.client.host.Host;
+
 import emn.llqmam.cloud.data.Vm;
 
 /**
@@ -31,5 +33,7 @@ public interface IApplication {
 	public void resume(Vm vm);
 	
 	public void suspend(Vm vm);
+	
+	public void migrate(Vm vm, Host node);
 
 }

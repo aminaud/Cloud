@@ -82,4 +82,11 @@ public class Application implements IApplication {
 		view.displayMessage("VM "+ vm.get_name() + " suspended", JOptionPane.INFORMATION_MESSAGE);
 		view.updatelistVM(vmToRetrieve.retrieveVMsInfo());
 	}
+
+	@Override
+	public void migrate(Vm vm, Host node) {
+		vm.migrate(node.gid());
+		view.displayMessage("VM "+ vm.get_name() + " migrated", JOptionPane.INFORMATION_MESSAGE);
+		view.updatelistVM(vmToRetrieve.retrieveVMsInfo());
+	}
 }

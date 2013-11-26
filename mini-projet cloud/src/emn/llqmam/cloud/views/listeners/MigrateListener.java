@@ -50,6 +50,6 @@ public class MigrateListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		Host host = applicationFrame.getSelectedHost();
 		Vm vm = applicationFrame.getSelectedVm();
-		// TODO
+		application.migrate(vm, host);
 	}
 }
