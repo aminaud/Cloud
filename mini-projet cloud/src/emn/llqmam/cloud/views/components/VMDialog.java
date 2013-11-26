@@ -61,27 +61,44 @@ public class VMDialog extends JDialog {
 	private void initComponent() {
 
 		/*
-		 * Nom - Statut - Nom du noeud qui l'hï¿½berge - Hyperviseur installï¿½ -
-		 * Consommation du processeur - Consommation de la mï¿½moire
+		 * - Nom ok
+		 * - Statut ok
+		 * - Nom du noeud qui l'héberge ok
+		 * - Hyperviseur installé
+		 * - Consommation du processeur
+		 * - Consommation de la mémoire
 		 */
 
 		JLabel lbName = new JLabel("Name");
 		JLabel tfName = new JLabel(vm.get_name());
 
 		JLabel lbStatus = new JLabel("Status");
-		JLabel tfStatus = new JLabel(vm.get_status());
+		JLabel tfStatus = new JLabel("");//vm.get_status());
+		
+		JLabel lbHost = new JLabel("Host");
+		JLabel tfHost = new JLabel(vm.get_host());
+		
+		JLabel lbUC = new JLabel("used UC");
+		JLabel tfUC = new JLabel(vm.get_usedUC());
+		
+		JLabel lbMem = new JLabel("used Memory");
+		JLabel tfMem = new JLabel(vm.get_usedMemory());
 
 		// panel for the form
 		JPanel panForm = new JPanel(new GridBagLayout());
 		panForm.setBackground(Colors.BACKGROUND);
-		panForm.setPreferredSize(new Dimension(320, 130));
+		panForm.setPreferredSize(new Dimension(320, 150));
 		panForm.add(lbName, getGridBagConstraints(0, 0, 1));
 		panForm.add(tfName, getGridBagConstraints(1, 0, 2));
 		panForm.add(lbStatus, getGridBagConstraints(0, 1, 1));
 		panForm.add(tfStatus, getGridBagConstraints(1, 1, 2));
-		panForm.add(lbStatus, getGridBagConstraints(0, 2, 1));
-		panForm.add(tfStatus, getGridBagConstraints(1, 2, 2));
-
+		panForm.add(lbHost, getGridBagConstraints(0, 2, 1));
+		panForm.add(tfHost, getGridBagConstraints(1, 2, 2));
+		panForm.add(lbUC, getGridBagConstraints(0, 3, 1));
+		panForm.add(tfUC, getGridBagConstraints(1, 3, 2));
+		panForm.add(lbMem, getGridBagConstraints(0, 4, 1));
+		panForm.add(tfMem, getGridBagConstraints(1, 4, 2));
+		
 		// top panel inside
 		JPanel panTopInside = new JPanel();
 		panTopInside.setBackground(Colors.BACKGROUND);
@@ -94,9 +111,8 @@ public class VMDialog extends JDialog {
 		JPanel panTopOutside = new JPanel();
 		panTopOutside.setBackground(Colors.BACKGROUND);
 		panTopOutside.setLayout(new BorderLayout());
-		panTopOutside.setBorder(new EmptyBorder(10, 20, 10, 20)); // top, left,
-																	// bottom,
-																	// right
+		panTopOutside.setBorder(new EmptyBorder(10, 20, 10, 20)); // top, left, bottom, right
+		
 		// we add top panel inside
 		panTopOutside.add(panTopInside, BorderLayout.CENTER);
 

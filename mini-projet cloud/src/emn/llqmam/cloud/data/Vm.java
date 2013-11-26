@@ -172,4 +172,19 @@ public class Vm {
 		return open_nebula_vm.status();
 	}
 
+	public String get_host() {
+		// TODO Auto-generated method stub
+		return "";
+	}
+
+	public String get_usedUC() {
+		// TODO Auto-generated method stub
+		return "";
+	}
+
+	public String get_usedMemory() {
+		// TODO Auto-generated method stub
+		return "";
+	}
+
 }
