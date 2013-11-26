@@ -52,8 +52,9 @@ public class View implements IView {
 
 	@Override
 	public void updatelistVM(List<Vm> listVM) {
-		// TODO Auto-generated method stub
-		
+		if (frame != null) {
+			frame.updatelistVM(listVM);
+		}
 	}
 	
 	/**
@@ -72,8 +73,9 @@ public class View implements IView {
 
 	@Override
 	public void updatelistHosts(List<Host> listHosts) {
-		// TODO Auto-generated method stub
-		
+		if (frame != null) {
+			frame.updatelistHosts(listHosts);
+		}
 	}
 	
 }

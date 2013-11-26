@@ -259,25 +259,31 @@ public class ApplicationFrame extends JFrame {
 
 	public void updatelistVM(List<Vm> listVM) {
 		Vm[] arrVm = new Vm[0];
+		int nbVM = 0;
 		
 		if (listVM != null) {
 			jlistVM.setListData(listVM.toArray(arrVm));
+			nbVM = listVM.size();
 		}
 		else {
 			jlistVM.setListData(arrVm);
 		}
+		tabbedPane.setTabComponentAt(1, new JLabel("VM (" + nbVM + ")"));
 	}
 
 
 	public void updatelistHosts(List<Host> listHosts) {
 		Host[] arrHosts = new Host[0];
+		int nbHosts = 0;
 		
 		if (listHosts != null) {
 			jlistHosts.setListData(listHosts.toArray(arrHosts));
+			nbHosts = listHosts.size();
 		}
 		else {
 			jlistHosts.setListData(arrHosts);
 		}
+		tabbedPane.setTabComponentAt(0, new JLabel("VM (" + nbHosts + ")"));
 	}
 	
 	
