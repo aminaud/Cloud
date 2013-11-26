@@ -94,9 +94,9 @@ public class ApplicationFrame extends JFrame {
 		MouseListener HostMouseListener = new MouseAdapter() {
 		     public void mouseClicked(MouseEvent e) {
 		         if (e.getClickCount() == 2) {
-		        	 // TODO
-		             int index = jlistHosts.locationToIndex(e.getPoint());
-		             System.out.println("Double clicked on Item " + index);
+		        	 Host host = jlistHosts.getSelectedValue();
+		             HostDialog dialog = new HostDialog(null, "Host Information", host);
+		             dialog.showDialog(true);
 		          }
 		     }
 		 };
@@ -117,7 +117,7 @@ public class ApplicationFrame extends JFrame {
 			jlistVM = new JList<>();
 			nbVM = 0;
 		}
-		jlistVM.setCellRenderer(new VMCellRenderer());
+//		jlistVM.setCellRenderer(new VMCellRenderer());
 		
 		MouseListener VMMouseListener = new MouseAdapter() {
 		     public void mouseClicked(MouseEvent e) {

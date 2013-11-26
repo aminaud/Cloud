@@ -16,6 +16,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import org.opennebula.client.host.Host;
+
 import emn.llqmam.cloud.data.Vm;
 
 /**
@@ -28,13 +30,13 @@ import emn.llqmam.cloud.data.Vm;
  * @version 1.0 beta
  */
 
-public class VMDialog extends JDialog {
+public class HostDialog extends JDialog {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Vm vm;
+	private Host host;
 
 	/**
 	 * <p>
@@ -48,12 +50,12 @@ public class VMDialog extends JDialog {
 	 * @param application
 	 *            the main controller of this application.
 	 */
-	public VMDialog(Frame parent, String name, Vm vm) {
+	public HostDialog(Frame parent, String name, Host host) {
 		super(parent, name, false);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		this.vm = vm;
+		this.host = host;
 		this.initComponent();
 	}
 
@@ -65,49 +67,74 @@ public class VMDialog extends JDialog {
 	private void initComponent() {
 
 		/*
-		 * - Nom ok
-		 * - Statut ok
-		 * - Nom du noeud qui l'héberge ok
-		 * - Hyperviseur installé
-		 * - Consommation du processeur
-		 * - Consommation de la mémoire
+		 
+		 - Nom
+		- Etat
+		- Hyperviseur installé
+		- Capacité du processeur
+		- Capacité de la mémoire
+		- Quantité du processeur utilisée
+		- Quantité de la mémoire utilisée
+		- Quantité de la mémoire libre
+		 
 		 */
 
 		JLabel lbName = new JLabel("Name");
-		JLabel tfName = new JLabel(vm.get_name());
-
-		JLabel lbStatus = new JLabel("Status");
-		JLabel tfStatus = new JLabel("");//vm.get_status());
+		JLabel tfName = new JLabel(host.getName());
 		
-		JLabel lbHost = new JLabel("Host");
-		JLabel tfHost = new JLabel(vm.get_host());
+		JLabel lbState = new JLabel("State");
+		JLabel tfState = new JLabel(host.stateStr());
 		
-		JLabel lbUC = new JLabel("used UC");
-		JLabel tfUC = new JLabel(vm.get_usedUC());
+		JLabel lbHyper = new JLabel("Hypervisor");
+		JLabel tfHyper = new JLabel(host.xpath("TEMPLATE/HYPERVISOR"));
 		
-		JLabel lbMem = new JLabel("used Memory");
-		JLabel tfMem = new JLabel(vm.get_usedMemory());
-
+		JLabel lbTotMem = new JLabel("Total memory");
+		JLabel tfTotMem = new JLabel(host.xpath("TEMPLATE/TOTALMEMORY"));
+		
+		JLabel lbUsedMem = new JLabel("Used memory");
+		JLabel tfUsedMem = new JLabel(host.xpath("TEMPLATE/USEDMEMORY"));
+		
+		JLabel lbFreeMem = new JLabel("Free memory");
+		JLabel tfFreeMem = new JLabel(host.xpath("TEMPLATE/FREEMEMORY"));
+		
+		JLabel lbTotUC = new JLabel("Total UC");
+		JLabel tfTotUC = new JLabel(host.xpath("TEMPLATE/TOTALCPU"));
+		
+		JLabel lbUsedUC = new JLabel("Used UC");
+		JLabel tfUsedUC = new JLabel(host.xpath("TEMPLATE/USEDCPU"));
+		
+		JLabel lbFreeUC = new JLabel("Free UC");
+		JLabel tfFreeUC = new JLabel(host.xpath("TEMPLATE/FREECPU"));
+		
 		// panel for the form
 		JPanel panForm = new JPanel(new GridBagLayout());
 		panForm.setBackground(Colors.BACKGROUND);
 		panForm.setPreferredSize(new Dimension(320, 150));
 		panForm.add(lbName, getGridBagConstraints(0, 0, 1));
 		panForm.add(tfName, getGridBagConstraints(1, 0, 2));
-		panForm.add(lbStatus, getGridBagConstraints(0, 1, 1));
-		panForm.add(tfStatus, getGridBagConstraints(1, 1, 2));
-		panForm.add(lbHost, getGridBagConstraints(0, 2, 1));
-		panForm.add(tfHost, getGridBagConstraints(1, 2, 2));
-		panForm.add(lbUC, getGridBagConstraints(0, 3, 1));
-		panForm.add(tfUC, getGridBagConstraints(1, 3, 2));
-		panForm.add(lbMem, getGridBagConstraints(0, 4, 1));
-		panForm.add(tfMem, getGridBagConstraints(1, 4, 2));
+		panForm.add(lbState, getGridBagConstraints(0, 1, 1));
+		panForm.add(tfState, getGridBagConstraints(1, 1, 2));
+		panForm.add(lbHyper, getGridBagConstraints(0, 2, 1));
+		panForm.add(tfHyper, getGridBagConstraints(1, 2, 2));
+		panForm.add(lbTotMem, getGridBagConstraints(0, 3, 1));
+		panForm.add(tfTotMem, getGridBagConstraints(1, 3, 2));
+		panForm.add(lbUsedMem, getGridBagConstraints(0, 4, 1));
+		panForm.add(tfUsedMem, getGridBagConstraints(1, 4, 2));
+		panForm.add(lbFreeMem, getGridBagConstraints(0, 5, 1));
+		panForm.add(tfFreeMem, getGridBagConstraints(1, 5, 2));
+		panForm.add(lbTotUC, getGridBagConstraints(0, 6, 1));
+		panForm.add(tfTotUC, getGridBagConstraints(1, 6, 2));
+		panForm.add(lbUsedUC, getGridBagConstraints(0, 7, 1));
+		panForm.add(tfUsedUC, getGridBagConstraints(1, 7, 2));
+		panForm.add(lbFreeUC, getGridBagConstraints(0, 8, 1));
+		panForm.add(tfFreeUC, getGridBagConstraints(1, 8, 2));
+		
 		
 		// top panel inside
 		JPanel panTopInside = new JPanel();
 		panTopInside.setBackground(Colors.BACKGROUND);
 		panTopInside.setLayout(new BorderLayout());
-		panTopInside.setBorder(BorderFactory.createTitledBorder("VM: " + vm.get_name()));
+		panTopInside.setBorder(BorderFactory.createTitledBorder("Host: " + host.getName()));
 		// we add icon & form
 		panTopInside.add(panForm, BorderLayout.CENTER);
 
