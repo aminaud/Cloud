@@ -241,4 +241,12 @@ public class ApplicationFrame extends JFrame {
 	         return this;
 	     }
 	 }
+	
+	public Vm getSelectedVm () {
+		return jlistVM.getSelectedValue();
+	}
+	
+	public Host getSelectedHost () {
+		return jlistHosts.getSelectedValue();
+	}
 }

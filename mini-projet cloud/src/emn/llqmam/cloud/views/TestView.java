@@ -20,7 +20,7 @@ public class TestView {
 		List<Vm> listvm = new ArrayList<>();
 		
 		for (int i=0; i<50; i++) {
-			Vm vm1 = new Vm();
+			TestVm vm1 = new TestVm();
 			vm1.set_name("vm" + i);
 			vm1.set_ID(i);
 			listvm.add(vm1);
