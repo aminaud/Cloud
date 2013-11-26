@@ -17,50 +17,8 @@ public class Vm {
 	Client client;
 	Integer ID;
 	String name;
-	public VirtualMachine open_nebula_vm; // representation of the vm for opennebula
-
-	public void set_client(Client client) {
-		this.client = client;
-	}
-
-	public Client get_client() {
-		return this.client;
-	}
-
-	public int get_ID() {
-		return this.ID;
-	}
-
-	public void set_ID(int id) {
-		this.ID = id;
-	}
-
-	/**
-	 * Gets OpenNebula node version.
-	 * 
-	 * @return The version of the OpenNebula node.
-	 */
-	public String get_version() {
-		// return this.client.get_version().getMessage();
-		OneSystem os = new OneSystem(client);
-		return os.getOnedVersion().getMessage();
-	}
-
-	public void set_name(String name) {
-		this.name = name;
-	}
-
-	public String get_name() {
-		return this.name;
-	}
-
-	public VirtualMachine get_open_nebula_vm() {
-		return this.open_nebula_vm;
-	}
-
-	public void set_open_nebula_vm(VirtualMachine open_nebula_vm) {
-		this.open_nebula_vm = open_nebula_vm;
-	}
+	public VirtualMachine open_nebula_vm; // representation of the vm for
+											// opennebula
 
 	public String suspend() {
 		String result = "";
@@ -166,25 +124,65 @@ public class Vm {
 		}
 		return listVM;
 	}
-	
+
+	public void set_client(Client client) {
+		this.client = client;
+	}
+
+	public Client get_client() {
+		return this.client;
+	}
+
+	public int get_ID() {
+		return this.ID;
+	}
+
+	public void set_ID(int id) {
+		this.ID = id;
+	}
+
+	/**
+	 * Gets OpenNebula node version.
+	 * 
+	 * @return The version of the OpenNebula node.
+	 */
+	public String get_version() {
+		// return this.client.get_version().getMessage();
+		OneSystem os = new OneSystem(client);
+		return os.getOnedVersion().getMessage();
+	}
+
+	public void set_name(String name) {
+		this.name = name;
+	}
+
+	public String get_name() {
+		return this.name;
+	}
+
+	public VirtualMachine get_open_nebula_vm() {
+		return this.open_nebula_vm;
+	}
+
+	public void set_open_nebula_vm(VirtualMachine open_nebula_vm) {
+		this.open_nebula_vm = open_nebula_vm;
+	}
+
 	public String get_status() {
-		// TODO
 		return open_nebula_vm.status();
 	}
 
 	public String get_host() {
-		// TODO Auto-generated method stub
-		return "";
+		return open_nebula_vm.xpath("HISTORY_RECORDS/HISTORY[last()]/HOSTNAME")
+				+ " " + open_nebula_vm.xpath("HISTORY_RECORDS/HISTORY[last()]/HID");
 	}
 
 	public String get_usedUC() {
-		// TODO Auto-generated method stub
-		return "";
+		return open_nebula_vm.xpath("TEMPLATE/CPU");
 	}
 
 	public String get_usedMemory() {
-		// TODO Auto-generated method stub
-		return "";
+		return open_nebula_vm.xpath("TEMPLATE/MEMORY");
 	}
 
 }
